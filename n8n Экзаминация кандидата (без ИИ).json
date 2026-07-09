@@ -1,0 +1,2058 @@
+{
+  "name": "First contact+exam+reminding",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "# Первый контакт \n- На триггер заряжен вебхук из таблицы [Пользователи воркспейса](https://baserow.wbtech.pro/database/168/table/685/3037#) на создание и апдейт строки \n- Вебхук будет срабатывать при создании строк в таблице\n",
+        "height": 616,
+        "width": 1960,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        -992
+      ],
+      "id": "beb3d4ce-6c1b-4ed4-a242-9fbd1c160698",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "select": "user",
+        "user": {
+          "__rl": true,
+          "value": "={{ $json[\"Slack ID\"] }}",
+          "mode": "id"
+        },
+        "text": "Привет! Мы рады приветствовать тебя в команде! Надеемся, что ты уже успел изучить регламент работы в WB-Tech и готов это доказать! Для этого тебе нужно пройти тест, чтобы к нему приступить нажми <https://n8n.wbtech.ru/form/3f8ab0fc-d2b7-4fa2-a484-a53cde52fc5c|ГОТОВ>",
+        "otherOptions": {
+          "includeLinkToWorkflow": false
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        880,
+        -624
+      ],
+      "id": "cf6f17f9-e0bd-43b5-8e6d-521cb9789d2f",
+      "name": "Отправка кандидату ссылку на тест",
+      "webhookId": "e34a741f-21ac-429f-9de2-e744823e71b1",
+      "credentials": {
+        "slackApi": {
+          "id": "TXqokw3PLnAAEtHq",
+          "name": "WBTbot [BOT token]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "select": "user",
+        "user": {
+          "__rl": true,
+          "value": "U09N6THASTG",
+          "mode": "id"
+        },
+        "text": "=Кандидату {{ $('статус прохождения теста').item.json.body.items[0]['FULL NAME'] }} отправлено приглашение пройти тест по регламентам",
+        "otherOptions": {
+          "includeLinkToWorkflow": false,
+          "sendAsUser": ""
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        1056,
+        -624
+      ],
+      "id": "2d7620d7-3249-4193-a196-59dccdcdd33f",
+      "name": "Извещение HR об отправке кандидату ссылку на тест",
+      "webhookId": "e34a741f-21ac-429f-9de2-e744823e71b1",
+      "credentials": {
+        "slackApi": {
+          "id": "TXqokw3PLnAAEtHq",
+          "name": "WBTbot [BOT token]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "339f05ba-4b5d-40d6-9004-c77c3f7f0efd",
+              "leftValue": "={{ $json.body.items[0][\"Onboarding exam\"] }}",
+              "rightValue": "PASSED",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "eb1f900f-85b2-400d-bd0a-38eb4e3f98f6",
+              "leftValue": "={{ $json.body.items[0].Name }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -16,
+        -624
+      ],
+      "id": "29010022-064c-430f-9701-e083b0fb3db6",
+      "name": "статус прохождения теста"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "new_candidate",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -272,
+        -624
+      ],
+      "id": "8bf57297-9678-4364-9dfe-dbb7977c5426",
+      "name": "Получаем сообщение из Baserow",
+      "webhookId": "ee9b9f29-33c6-4461-82b0-1346b22b8350"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "335c43b6-ad3d-4795-ad2b-0590c47ac43a",
+              "leftValue": "={{ $json }}",
+              "rightValue": "={{ $json.body.items[0][\"Onboarding exam\"] }}",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        368,
+        -624
+      ],
+      "id": "2a94702d-2c53-4e4f-ad6c-55bd29fe60a1",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "content": "## Проверка существования кандидата в таблицах Users и Onboarding results \n",
+        "height": 416,
+        "width": 896
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -80,
+        -832
+      ],
+      "typeVersion": 1,
+      "id": "a36a3c41-447a-4fc6-a966-ac3da03a3575",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "databaseId": 168,
+        "tableId": 691,
+        "additionalOptions": {
+          "filters": {
+            "fields": [
+              {
+                "field": 6716,
+                "operator": "contains",
+                "value": "={{ $json.body.items[0][\"FULL NAME\"] }}"
+              },
+              {
+                "field": 6718,
+                "operator": "contains",
+                "value": "={{ $json.body.items[0].Slack }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        176,
+        -624
+      ],
+      "id": "084ca35c-938c-4378-bd2c-c526bbc64beb",
+      "name": "Проверка кандидата в табл Onboarding results",
+      "alwaysOutputData": true,
+      "credentials": {
+        "baserowApi": {
+          "id": "NyOClyxTnP3ydORa",
+          "name": "Baserow account Onboarding exam"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 168,
+        "tableId": 691,
+        "rowId": "={{ $json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 6722,
+              "fieldValue": "={{ $now.toFormat('yyyy-MM-dd') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        592,
+        -752
+      ],
+      "id": "97af9b6f-fd94-4fcb-9c3e-3eaa256fa40b",
+      "name": "Кандидат есть, обновляем дату выполнения теста",
+      "credentials": {
+        "baserowApi": {
+          "id": "NyOClyxTnP3ydORa",
+          "name": "Baserow account Onboarding exam"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "databaseId": 168,
+        "tableId": 691,
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 6716,
+              "fieldValue": "={{ $('Получаем сообщение из Baserow').item.json.body.items[0]['FULL NAME'] }}"
+            },
+            {
+              "fieldId": 6719,
+              "fieldValue": "3"
+            },
+            {
+              "fieldId": 6718,
+              "fieldValue": "={{ $('Получаем сообщение из Baserow').item.json.body.items[0].Slack }}"
+            },
+            {
+              "fieldId": 6722,
+              "fieldValue": "={{ $now.toFormat('yyyy-MM-dd') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        592,
+        -560
+      ],
+      "id": "7e0d73e4-a6c7-4cbc-87e8-dc407cb48bd5",
+      "name": "кандидата нет, создаем",
+      "credentials": {
+        "baserowApi": {
+          "id": "NyOClyxTnP3ydORa",
+          "name": "Baserow account Onboarding exam"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "databaseId": 168,
+        "tableId": 686,
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 6642,
+              "fieldValue": "ТЕСТОВЫЙ"
+            },
+            {
+              "fieldId": 6647,
+              "fieldValue": "U09N6THASTG"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        -1520,
+        0
+      ],
+      "id": "7163d2d5-01fc-4884-a7a8-3bf8a65c93d7",
+      "name": "ТЕСТИРОВАНИЕ БОТА",
+      "credentials": {
+        "baserowApi": {
+          "id": "NyOClyxTnP3ydORa",
+          "name": "Baserow account Onboarding exam"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "databaseId": 168,
+        "tableId": 691,
+        "additionalOptions": {
+          "filters": {
+            "fields": [
+              {
+                "field": 6721,
+                "operator": "empty",
+                "value": "null"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        608
+      ],
+      "id": "f7edbf39-8bbd-4c48-9ed7-8508d6328c58",
+      "name": "Get candidates list",
+      "credentials": {
+        "baserowApi": {
+          "id": "NyOClyxTnP3ydORa",
+          "name": "Baserow account Onboarding exam"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "select": "user",
+        "user": {
+          "__rl": true,
+          "value": "U09N6THASTG",
+          "mode": "id"
+        },
+        "text": "=Редиски-сосиски ({{ $json.names }}) так и не прошли тест. Им нужен волшебный пендель.",
+        "otherOptions": {
+          "includeLinkToWorkflow": false,
+          "sendAsUser": ""
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        800,
+        512
+      ],
+      "id": "ad670dcc-c906-44f7-9875-90db0a2928d1",
+      "name": "Извещение HR об отправке кандидату ссылку на тест1",
+      "webhookId": "e34a741f-21ac-429f-9de2-e744823e71b1",
+      "credentials": {
+        "slackApi": {
+          "id": "TXqokw3PLnAAEtHq",
+          "name": "WBTbot [BOT token]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "select": "user",
+        "user": {
+          "__rl": true,
+          "value": "={{ $json['Slack ID'] }}",
+          "mode": "id"
+        },
+        "text": "Эй, тест все еще не пройден! Вооружись клавой и мышью и победи его! Жмякай <https://n8n.wbtech.ru/form/3f8ab0fc-d2b7-4fa2-a484-a53cde52fc5c|ГОТОВ>",
+        "otherOptions": {
+          "includeLinkToWorkflow": false
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        448,
+        672
+      ],
+      "id": "08728c77-03b1-4a65-b2c8-c620bfaa8fa5",
+      "name": "Отправка кандидату напоминалку про тест",
+      "webhookId": "e34a741f-21ac-429f-9de2-e744823e71b1",
+      "credentials": {
+        "slackApi": {
+          "id": "TXqokw3PLnAAEtHq",
+          "name": "WBTbot [BOT token]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 11,
+              "triggerAtMinute": 30
+            },
+            {
+              "triggerAtHour": 13,
+              "triggerAtMinute": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -288,
+        608
+      ],
+      "id": "dcbb44a7-3c3b-4a89-b076-b13f6064c6e2",
+      "name": "Напоминалки"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "200",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1248,
+        -624
+      ],
+      "id": "124381de-73b5-4eb4-b28a-8f02dcf2b1d0",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        336,
+        512
+      ],
+      "id": "b458c511-5ad8-439e-a685-9c48643d0202",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Код для ноды Code в n8n\n// Возвращает только массив имен\n\nconst allItems = items;\n\nif (!allItems || allItems.length === 0) {\n  return [];\n}\n\nconst names = allItems\n  .filter(item => item.json && item.json.Name)\n  .map(item => item.json.Name);\n\nreturn [{\n  json: {\n    names: names\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        544,
+        512
+      ],
+      "id": "cee6d8e9-cb48-4168-a0ea-1cd371be9e2f",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "content": "## Напоминалочки и уведы для HR",
+        "height": 400,
+        "width": 1392,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -336,
+        464
+      ],
+      "typeVersion": 1,
+      "id": "e1c282ae-1e64-4058-b628-9ee81e85ed00",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        160,
+        656
+      ],
+      "id": "cbbd7342-6741-41a2-bd8e-283f9a6d9045",
+      "name": "Рассылка двойшникам"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        1024
+      ],
+      "id": "be87040f-95bc-4fc5-825d-f7f6fab79750",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6323bb5e-9b1f-4679-b2f3-982ee699e916",
+              "name": "Имя флоу: ",
+              "value": "={{ $json.workflow.name }}",
+              "type": "string"
+            },
+            {
+              "id": "0aee2990-bd36-4bd3-b441-5a65ef265805",
+              "name": "Ошибка  в ноде ",
+              "value": "={{ $json.execution.lastNodeExecuted }}",
+              "type": "string"
+            },
+            {
+              "id": "661db573-c09b-4d54-bcdd-1206283fae8c",
+              "name": "Время",
+              "value": "={{ $now }}",
+              "type": "string"
+            },
+            {
+              "id": "a93f3c05-169b-46b1-8da6-b214657455f7",
+              "name": "текст ошибки",
+              "value": "={{ $json.execution.error.message }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -32,
+        1024
+      ],
+      "id": "e7a3524e-0cd7-4c66-be23-17cb88bea17e",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "content": "## Фиксация ошибок (нужно добавить id разработчика для получения ошибок работы флоу)",
+        "height": 320,
+        "width": 752,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -336,
+        880
+      ],
+      "typeVersion": 1,
+      "id": "75b36be2-bbbe-4bc6-a190-188768f729ee",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "## Получение вопросов и подготовка формы для опросника\n",
+        "height": 480,
+        "width": 560,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        400,
+        -128
+      ],
+      "typeVersion": 1,
+      "id": "8aeab249-0a45-4762-bb50-f7bb2c4a798c",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "={{ $json[\"CQ_1_QUESTIONS\"] }}",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "={{ $json['CQ_1_Filter Right'][0].value }}"
+                  },
+                  {
+                    "option": "={{ $json['CQ_1_Filter False'][0].value }}"
+                  },
+                  {
+                    "option": "={{ $json['CQ_1_Filter False'][1].value }}"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "={{ $json.CQ_2_QUESTIONS }}",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "={{ $json['CQ_2_Filter Right'][0].value }}"
+                  },
+                  {
+                    "option": "={{ $json['CQ_2_Filter False'][0].value }}"
+                  },
+                  {
+                    "option": "={{ $json['CQ_2_Filter False'][1].value }}"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "={{ $json.CQ_3_QUESTIONS }}",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "={{ $json['CQ_3_Filter Right'][0].value }}"
+                  },
+                  {
+                    "option": "={{ $json['CQ_3_Filter False'][0].value }}"
+                  },
+                  {
+                    "option": "={{ $json['CQ_3_Filter False'][1].value }}"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "={{ $json.CQ_4_QUESTIONS }}",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "={{ $json['CQ_4_Filter Right'][0].value }}"
+                  },
+                  {
+                    "option": "={{ $json['CQ_4_Filter False'][0].value }}"
+                  },
+                  {
+                    "option": "={{ $json['CQ_4_Filter False'][1].value }}"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "={{ $json.CQ_5_QUESTIONS }}",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "={{ $json['CQ_5_Filter Right'][0].value }}"
+                  },
+                  {
+                    "option": "={{ $json['CQ_5_Filter False'][0].value }}"
+                  },
+                  {
+                    "option": "={{ $json['CQ_5_Filter False'][1].value }}"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "={{ $json.OQ_1_QUESTIONS }}",
+              "placeholder": "Впишите сюда свой ответ"
+            },
+            {
+              "fieldLabel": "={{ $json.OQ_2_QUESTIONS }}",
+              "placeholder": "Впишите сюда свой ответ"
+            },
+            {
+              "fieldLabel": "={{ $json.OQ_3_QUESTIONS }}",
+              "placeholder": "Впишите сюда свой ответ"
+            },
+            {
+              "fieldLabel": "={{ $json.OQ_4_QUESTIONS }}",
+              "placeholder": "Впишите сюда свой ответ"
+            },
+            {
+              "fieldLabel": "={{ $json.OQ_5_QUESTIONS }}",
+              "placeholder": "Впишите сюда свой ответ"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.3,
+      "position": [
+        1312,
+        48
+      ],
+      "id": "121ec64a-fd2e-4b64-a498-9488fc31a9cc",
+      "name": "Отправка формы с вопросами кандидату1",
+      "webhookId": "249740f7-4773-4f36-88f1-49c99bf51fad"
+    },
+    {
+      "parameters": {
+        "databaseId": "=168",
+        "tableId": 683,
+        "additionalOptions": {
+          "filters": {
+            "fields": [
+              {
+                "field": 6665,
+                "operator": "contains",
+                "value": "Open"
+              }
+            ]
+          },
+          "filterType": "AND"
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        528,
+        160
+      ],
+      "id": "cf7e159c-ede7-4db0-8a99-7a520cf02e8a",
+      "name": "Получение открытые вопросы",
+      "credentials": {
+        "baserowApi": {
+          "id": "NyOClyxTnP3ydORa",
+          "name": "Baserow account Onboarding exam"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1088,
+        48
+      ],
+      "id": "9320330c-0596-405d-a668-ac3b4025c554",
+      "name": "объединение данных"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Код для ноды Code в n8n\n// Случайным образом выбирает 5 элементов и объединяет их в один объект\n\n// Получаем все входные items\nconst allItems = items;\n\n// Проверяем, что есть элементы для обработки\nif (!allItems || allItems.length === 0) {\n  return [];\n}\n\n// Определяем количество элементов для обработки (максимум 5)\nconst itemsToProcess = allItems.length <= 5 ? allItems : (() => {\n  // Создаем копию массива для перемешивания\n  const shuffled = [...allItems];\n  \n  // Алгоритм Fisher-Yates для случайного перемешивания\n  for (let i = shuffled.length - 1; i > 0; i--) {\n    const j = Math.floor(Math.random() * (i + 1));\n    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];\n  }\n  \n  // Возвращаем первые 5 элементов\n  return shuffled.slice(0, 5);\n})();\n\n// Объединяем все items в один объект с префиксами\nconst mergedJson = {};\n\nitemsToProcess.forEach((item, index) => {\n  const prefix = `CQ_${index + 1}_`;\n  \n  // Добавляем префикс к каждому ключу и объединяем в один объект\n  Object.keys(item.json).forEach(key => {\n    mergedJson[prefix + key] = item.json[key];\n  });\n});\n\n// Возвращаем один item со всеми полями\nreturn [{\n  json: mergedJson\n}];\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        752,
+        -48
+      ],
+      "id": "8a903dba-ebfa-48a4-91a3-747c4aa2b7e5",
+      "name": "Рандомная выборка 5 вопросов (закрытые вопросы)"
+    },
+    {
+      "parameters": {
+        "databaseId": 168,
+        "tableId": 683,
+        "additionalOptions": {
+          "filters": {
+            "fields": [
+              {
+                "field": 6665,
+                "operator": "contains",
+                "value": "Close"
+              }
+            ]
+          },
+          "filterType": "AND"
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        528,
+        -48
+      ],
+      "id": "de862465-98fc-4822-be95-25b150ac965c",
+      "name": "Получение закрытых вопросов",
+      "alwaysOutputData": false,
+      "credentials": {
+        "baserowApi": {
+          "id": "NyOClyxTnP3ydORa",
+          "name": "Baserow account Onboarding exam"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Код для ноды Code в n8n\n// Случайным образом выбирает 5 элементов и объединяет их в один объект\n// Это позволяет видеть все поля в схеме n8n\n\n// Получаем все входные items\nconst allItems = items;\n\n// Проверяем, что есть элементы для обработки\nif (!allItems || allItems.length === 0) {\n  return [];\n}\n\n// Определяем количество элементов для обработки (максимум 5)\nconst itemsToProcess = allItems.length <= 5 ? allItems : (() => {\n  // Создаем копию массива для перемешивания\n  const shuffled = [...allItems];\n  \n  // Алгоритм Fisher-Yates для случайного перемешивания\n  for (let i = shuffled.length - 1; i > 0; i--) {\n    const j = Math.floor(Math.random() * (i + 1));\n    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];\n  }\n  \n  // Возвращаем первые 5 элементов\n  return shuffled.slice(0, 5);\n})();\n\n// Объединяем все items в один объект с префиксами\nconst mergedJson = {};\n\nitemsToProcess.forEach((item, index) => {\n  const prefix = `OQ_${index + 1}_`;\n  \n  // Добавляем префикс к каждому ключу и объединяем в один объект\n  Object.keys(item.json).forEach(key => {\n    mergedJson[prefix + key] = item.json[key];\n  });\n});\n\n// Возвращаем один item со всеми полями\nreturn [{\n  json: mergedJson\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        752,
+        160
+      ],
+      "id": "27ccc619-f66d-43dc-9382-18691387306b",
+      "name": "Рандомная выборка 5 вопросов (открытые)"
+    },
+    {
+      "parameters": {
+        "formTitle": "Тест по регламентам",
+        "formDescription": "Ответьте на 5 открытых и 5 закрытых вопросов",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Имя и Фамилия (как в Slack)",
+              "placeholder": "Тарас Воронцов"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -256,
+        16
+      ],
+      "id": "fcf6d49f-6d9e-4802-aa51-6f24211e4e3b",
+      "name": "On form submission",
+      "webhookId": "3f8ab0fc-d2b7-4fa2-a484-a53cde52fc5c"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8ce9c63a-9b55-4629-94f4-65d487ea44c7",
+              "name": "Question",
+              "value": "={{ $json.Question }}",
+              "type": "string"
+            },
+            {
+              "id": "8e13cab1-9513-4423-97d8-827e251427a3",
+              "name": "User_ans",
+              "value": "={{ $json.User_ans }} ✔️",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2576,
+        128
+      ],
+      "id": "fe8cdf78-202e-4c3f-ad03-590c54ffe9cd",
+      "name": "Метка ВЕРНО"
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "completionTitle": "Готово! 😊",
+        "completionMessage": "Все ответы отправлены на проверку 👩‍🏫\nПо завершению HR сообщит результаты 💼",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.3,
+      "position": [
+        1504,
+        256
+      ],
+      "id": "560af0b6-c292-4231-be6a-4f264fcdc600",
+      "name": "Последняя страница формы",
+      "webhookId": "5272798c-f44b-406b-9038-9b00daf52da9"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4d84a829-5a90-4d84-9ecf-daf07e264e6d",
+              "leftValue": "={{ $('объединение данных').item.json['CQ_1_Filter Right'][0].value }}, {{ $('объединение данных').item.json['CQ_2_Filter Right'][0].value }}, {{ $('объединение данных').item.json['CQ_3_Filter Right'][0].value }}, {{ $('объединение данных').item.json['CQ_4_Filter Right'][0].value }}, {{ $('объединение данных').item.json['CQ_5_Filter Right'][0].value }}",
+              "rightValue": "={{ $json.User_ans }}",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2288,
+        144
+      ],
+      "id": "dc8cf631-59cf-4a51-bfc8-3cbdb995ec5d",
+      "name": "Валидация ответов"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "273e84e5-299f-4c14-b19a-921899ae7e78",
+              "leftValue": "={{ $('объединение данных').item.json.CQ_1_QUESTIONS }}, {{ $('объединение данных').item.json.CQ_2_QUESTIONS }}, {{ $('объединение данных').item.json.CQ_3_QUESTIONS }}, {{ $('объединение данных').item.json.CQ_4_QUESTIONS }}, {{ $('объединение данных').item.json.CQ_5_QUESTIONS }}, ",
+              "rightValue": "={{ $json.Question }}",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        1776,
+        128
+      ],
+      "id": "b9a627a8-f8cb-4af5-95ac-b21b7c2d278b",
+      "name": "Оставляем закрытые вопросы"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Код для ноды Code в n8n\n// Преобразует ответы формы в отдельные объекты с Question и User_ans\n\n// Получаем все входные items\nconst allItems = items;\n\n// Проверяем, что есть элементы для обработки\nif (!allItems || allItems.length === 0) {\n  return [];\n}\n\n// Список служебных полей, которые нужно исключить\nconst systemFields = ['submittedAt', 'formMode'];\n\n// Результирующий массив объектов\nconst result = [];\n\n// Обрабатываем каждый item\nallItems.forEach((item) => {\n  // Проходим по всем ключам объекта\n  Object.keys(item.json).forEach(key => {\n    // Пропускаем служебные поля\n    if (systemFields.includes(key)) {\n      return;\n    }\n    \n    // Создаем объект для каждого вопроса-ответа\n    result.push({\n      json: {\n        Question: key,\n        User_ans: item.json[key]\n      }\n    });\n  });\n});\n\nreturn result;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1504,
+        -64
+      ],
+      "id": "5af8b5e0-ef65-4b15-8876-d3985adfc2d6",
+      "name": "Преобразование ответов"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8ce9c63a-9b55-4629-94f4-65d487ea44c7",
+              "name": "Question",
+              "value": "={{ $json.Question }}",
+              "type": "string"
+            },
+            {
+              "id": "8e13cab1-9513-4423-97d8-827e251427a3",
+              "name": "User_ans",
+              "value": "={{ $json.User_ans }} ❌",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2576,
+        272
+      ],
+      "id": "379e0b5a-4a45-43da-bbcb-c0ed50784d8a",
+      "name": "Метка ОШИБКА"
+    },
+    {
+      "parameters": {
+        "content": "## Модуль валидации закрытых вопросов \n\n",
+        "height": 432,
+        "width": 1168,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1664,
+        16
+      ],
+      "typeVersion": 1,
+      "id": "b6e96f7d-8e4e-4336-b649-97fdeb98bed9",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2000,
+        128
+      ],
+      "id": "40ed8fcc-eafe-4918-bf76-09d37fb2e0a6",
+      "name": "Перебор вопросов"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8b5ad885-542a-43fb-830d-7482586be680",
+              "leftValue": "={{ $('объединение данных').item.json.OQ_1_QUESTIONS }}, {{ $('объединение данных').item.json.OQ_2_QUESTIONS }}, {{ $('объединение данных').item.json.OQ_3_QUESTIONS }}, {{ $('объединение данных').item.json.OQ_4_QUESTIONS }}, {{ $('объединение данных').item.json.OQ_5_QUESTIONS }}, ",
+              "rightValue": "={{ $json.Question }}",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        1776,
+        -192
+      ],
+      "id": "2f2adae5-ffcd-423f-bf38-189777b9316b",
+      "name": "Оставляем открытые вопросы"
+    },
+    {
+      "parameters": {
+        "content": "## Модуль сбора результатов и их отправка HR\n\n",
+        "height": 352,
+        "width": 1168,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1664,
+        -352
+      ],
+      "typeVersion": 1,
+      "id": "4654b401-df37-4646-a610-9122c5c82133",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Код для ноды Code в n8n\n// Объединяет все items из Merge ноды в один item с массивом\n// Сохраняет все данные без потерь\n\n// Получаем все входные items из Merge ноды\nconst allItems = items;\n\n// Проверяем, что есть элементы для обработки\nif (!allItems || allItems.length === 0) {\n  return [];\n}\n\n// Результирующий массив всех вопросов-ответов\nconst mergedArray = [];\n\n// Обрабатываем каждый item\nallItems.forEach((item) => {\n  // Если item уже содержит массив объектов\n  if (Array.isArray(item.json)) {\n    item.json.forEach(obj => {\n      // Если объект имеет поля Question и User_ans, используем их напрямую\n      if (obj.Question && obj.User_ans !== undefined) {\n        mergedArray.push({\n          Вопрос: obj.Question,\n          User_ans: obj.User_ans\n        });\n      }\n      // Если объект имеет другие поля, сохраняем его полностью\n      else {\n        mergedArray.push(obj);\n      }\n    });\n  } \n  // Если item содержит объект с полями Question и User_ans\n  else if (item.json.Question && item.json.User_ans !== undefined) {\n    mergedArray.push({\n      Вопрос: item.json.Question,\n      User_ans: item.json.User_ans\n    });\n  }\n  // Если item содержит объект с полями Вопрос и User_ans (старый формат)\n  else if (item.json.Вопрос && item.json.User_ans !== undefined) {\n    mergedArray.push({\n      Вопрос: item.json.Вопрос,\n      User_ans: item.json.User_ans\n    });\n  }\n  // Если item содержит объект с другими полями (например, результаты)\n  else {\n    // Сохраняем весь объект как есть\n    mergedArray.push(item.json);\n  }\n});\n\n// Возвращаем один item с массивом всех объектов\nreturn [{\n  json: {\n    all_questions: mergedArray\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2336,
+        -192
+      ],
+      "id": "00008c6f-5a42-4e01-a371-f018cb83d3cf",
+      "name": "Combine Items"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        2144,
+        -192
+      ],
+      "id": "12c2ccfb-dd2a-408d-a271-51599c235121",
+      "name": "Data collect"
+    },
+    {
+      "parameters": {
+        "select": "user",
+        "user": {
+          "__rl": true,
+          "value": "U09N6THASTG",
+          "mode": "list",
+          "cachedResultName": "taras.chek95"
+        },
+        "text": "=📝 Тест завершен\n\n👨‍💼 Кандидат : {{ $json.Name }}\n\n📌Открытые вопросы: \n{{ $json[\"Open questions\"] }}\n\n📌Закрытые вопросы: \n{{ $json['Close questions'] }}\n\n📊 Посмотреть результаты теста и количество попыток можно <https://baserow.wbtech.pro/database/168/table/691/3043|ТУТ>\n\nПринять решение:\n<https://n8n.wbtech.ru/webhook/solution?id={{ $json['Slack ID'] }}&solution=paste|СДАЛ>\n<https://n8n.wbtech.ru/webhook/solution?id={{ $json['Slack ID'] }}&solution=fail|НЕ СДАЛ>",
+        "otherOptions": {
+          "includeLinkToWorkflow": false
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        2704,
+        -192
+      ],
+      "id": "9d3081b6-d2e6-4103-82c2-c0c0f6c576ae",
+      "name": "Send results to HR",
+      "webhookId": "7a5243ab-d0cd-4080-b6e5-6a51af03beec",
+      "credentials": {
+        "slackApi": {
+          "id": "TXqokw3PLnAAEtHq",
+          "name": "WBTbot [BOT token]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "databaseId": 168,
+        "tableId": 691,
+        "additionalOptions": {
+          "filters": {
+            "fields": [
+              {
+                "field": 6716,
+                "operator": "contains",
+                "value": "={{ $json[\"Имя и Фамилия (как в Slack)\"] }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        16
+      ],
+      "id": "558f3eaf-5339-405f-86de-def9d8ce907f",
+      "name": "Получение данных о кандидате",
+      "alwaysOutputData": true,
+      "credentials": {
+        "baserowApi": {
+          "id": "NyOClyxTnP3ydORa",
+          "name": "Baserow account Onboarding exam"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "0f0d54d2-0aa3-4f71-8b65-a002a8689a77",
+              "leftValue": "={{ $json.Name }}",
+              "rightValue": "={{ $('On form submission').item.json['Имя и Фамилия (как в Slack)'] }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "43f7a754-98e8-4743-b086-802c6a3bdb01",
+              "leftValue": "={{ $json.Healths }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        96,
+        16
+      ],
+      "id": "9342a9f2-5bea-40c5-8f36-0bba274a4ec4",
+      "name": "Валидация попыток и личности кандидата"
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "completionTitle": "=❌ Не пройдена верификация ❌",
+        "completionMessage": "=К сожалению твое имя в Slack не соответствует \"{{ $('On form submission').item.json['Имя и Фамилия (как в Slack)'] }}\" либо ты потратил 3 попытки на прохождение теста! Свяжись с HR!",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.3,
+      "position": [
+        240,
+        176
+      ],
+      "id": "2c2ab409-c05f-4856-9141-2c0b9276f900",
+      "name": "Не прошел верификацию",
+      "webhookId": "94d9a0e5-0043-4bba-b23f-77957747fbb4"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 168,
+        "tableId": 691,
+        "rowId": "={{ $json.all_questions[5].id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 6717,
+              "fieldValue": "=Вопрос 1 (ответ):  {{ $json.all_questions[0][\"Вопрос\"] }} ({{ $json.all_questions[0].User_ans }})\nВопрос 2 (ответ): {{ $json.all_questions[1]['Вопрос'] }} ({{ $json.all_questions[1].User_ans }})\nВопрос 3 (ответ): {{ $json.all_questions[2]['Вопрос'] }} ({{ $json.all_questions[2].User_ans }})\nВопрос 4 (ответ): {{ $json.all_questions[3]['Вопрос'] }} ({{ $json.all_questions[3].User_ans }})\nВопрос 5 (ответ): {{ $json.all_questions[4]['Вопрос'] }} ({{ $json.all_questions[4].User_ans }})"
+            },
+            {
+              "fieldId": 6720,
+              "fieldValue": "=Вопрос 6 (ответ):  {{ $json.all_questions[6][\"Вопрос\"] }} ({{ $json.all_questions[6].User_ans }})\nВопрос 7 (ответ): {{ $json.all_questions[7]['Вопрос'] }} ({{ $json.all_questions[7].User_ans }})\nВопрос 8 (ответ): {{ $json.all_questions[8]['Вопрос'] }} ({{ $json.all_questions[8].User_ans }})\nВопрос 9 (ответ): {{ $json.all_questions[9]['Вопрос'] }} ({{ $json.all_questions[9].User_ans }})\nВопрос 10 (ответ): {{ $json.all_questions[10]['Вопрос'] }} ({{ $json.all_questions[10].User_ans }})"
+            },
+            {
+              "fieldId": 6719,
+              "fieldValue": "={{ $json.all_questions[5].Healths -1 }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        2512,
+        -192
+      ],
+      "id": "1382bc24-d6df-4b04-8fee-e43195677fd3",
+      "name": "Заполнение результата тестирования и уменьшение жизни",
+      "credentials": {
+        "baserowApi": {
+          "id": "NyOClyxTnP3ydORa",
+          "name": "Baserow account Onboarding exam"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Требования\n\nОЖИДАНИЯ ОТ ТЕСТИРОВЩИКА\n\nТест должен включать открытые и закрытые вопросы. Соотношение отк/закр вопросов в выборке для кандидатов 50/50. Открытые вопросы проверяет HR. Валидация закрытых вопросов автоматическая. Должна быть доступна смена вопросов для HR. Выборка вопросов для теста должна быть рандомизирована.\n\nБот должен быть функциональным: (напоминалки пользователю - обязательно пройди тест), должно отслеживаться прохождение теста HR (напоминалки HR, что есть сотрудник не прошедший тест в течение … времени).\n\nКонечным ревьюером прохождения теста является HR. Она принимает решение о сдаче/не сдаче теста. \n\nЕсли тест пройден, то приходит сообщение “УСПЕХ”, если не проходит, то снова нужны напоминалки о тесте и  HR открывает повторное прохождение теста (количество попыток не более 3). \n\n",
+        "height": 576,
+        "width": 1200,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1584,
+        -368
+      ],
+      "typeVersion": 1,
+      "id": "41585c3b-ca42-411b-b625-ebffd7a6f813",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "## Модуль формирования и отправки формы кандидату\n- Для изменения пула вопросов по теме нужны учетки от n8n (поменять минимаксы в ноде Code), учетка от baserow  ",
+        "height": 800,
+        "width": 1968
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -336,
+        -352
+      ],
+      "typeVersion": 1,
+      "id": "63286bd5-b826-48e3-86b2-9bb9c5418691",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "content": "## Валидация жизней и личности кандидата",
+        "height": 432,
+        "width": 464,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -112,
+        -96
+      ],
+      "typeVersion": 1,
+      "id": "dd95af26-ec51-4180-befc-3d96c11f864d",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "select": "user",
+        "user": {
+          "__rl": true,
+          "value": "U09N6THASTG",
+          "mode": "list",
+          "cachedResultName": "taras.chek95"
+        },
+        "text": "=❗ Ошибка в рабочем флоу: ❗  Дата фиксации: {{ $json['Время'] }} Название флоу: {{ $json['Имя флоу: '] }} Нода: {{ $json['Ошибка  в ноде '] }} Текст ошибки: {{ $json['текст ошибки'] }}",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        176,
+        1024
+      ],
+      "id": "40b1f089-80d2-4ad0-9a1c-54a01fc3ac6f",
+      "name": "Send a message",
+      "webhookId": "63fad73d-da81-4ff0-a408-b54f14b6863a",
+      "retryOnFail": true,
+      "credentials": {
+        "slackApi": {
+          "id": "TXqokw3PLnAAEtHq",
+          "name": "WBTbot [BOT token]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Правки:\n- Возможность принять решение в слаке +++\n- Поменять тексты\n+ Поменять контактное лицо на ЗОЮ, скинуть ссылки на БД и Воркфлоу ++++\n- Нужно чтобы кандидат добавлялся в канал welcome-wbt",
+        "height": 384,
+        "width": 528
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1296,
+        320
+      ],
+      "typeVersion": 1,
+      "id": "16817876-b4ba-46b3-8256-2acbd2063fa2",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "path": "solution",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        1712,
+        -752
+      ],
+      "id": "72c1d538-d497-471c-bcf5-94a3e0461a26",
+      "name": "Webhook",
+      "webhookId": "6fb4ccb7-18c0-4e16-8ea5-323c45b5d0cd"
+    },
+    {
+      "parameters": {
+        "content": "## Модуль принятия решения HR",
+        "height": 608,
+        "width": 1184,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1632,
+        -992
+      ],
+      "typeVersion": 1,
+      "id": "671654ed-2da2-446f-be3f-567deac43096",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.query.solution }}",
+                    "rightValue": "=paste",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "42eb925e-80ae-4280-89ad-0f11db83e05d"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Сдал"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "faa82141-766a-4f6c-be68-4db527030da8",
+                    "leftValue": "={{ $json.query.solution }}",
+                    "rightValue": "fail",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Провалил"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        1920,
+        -752
+      ],
+      "id": "90f0990f-9b81-4ba9-8c31-e1e78ee96eac",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "databaseId": 168,
+        "tableId": 691,
+        "additionalOptions": {
+          "filters": {
+            "fields": [
+              {
+                "field": 6718,
+                "value": "={{ $json.query.id }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        2144,
+        -832
+      ],
+      "id": "d3824d0a-0c2c-49bb-83b5-7cf2a4b37331",
+      "name": "Get many rows",
+      "credentials": {
+        "baserowApi": {
+          "id": "NyOClyxTnP3ydORa",
+          "name": "Baserow account Onboarding exam"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 168,
+        "tableId": 691,
+        "rowId": "={{ $json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 6721,
+              "fieldValue": "true"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        2336,
+        -832
+      ],
+      "id": "f1c6c54e-e1b0-4486-a867-b43f9f5b69eb",
+      "name": "Update a row",
+      "credentials": {
+        "baserowApi": {
+          "id": "NyOClyxTnP3ydORa",
+          "name": "Baserow account Onboarding exam"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "select": "user",
+        "user": {
+          "__rl": true,
+          "value": "={{ $json.query.id }}",
+          "mode": "id"
+        },
+        "text": "Привет, юный падаван! Ты не смог перейти на светлую сторону с первого раза, и победить тест. Изучи внимательно регламент, почувствуй силу в себе и попробуй еще раз. Помни, что у истинного джедая всего 3 попытки. \nЧтобы приступить к тесту соберись с силами и нажми <https://n8n.wbtech.ru/form/3f8ab0fc-d2b7-4fa2-a484-a53cde52fc5c|ГОТОВ>",
+        "otherOptions": {
+          "includeLinkToWorkflow": false
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        2144,
+        -640
+      ],
+      "id": "bb04d92c-acd6-4573-a2c3-faf8b6e0bf39",
+      "name": "Отправка кандидату ссылку на Повторную ссылку",
+      "webhookId": "e34a741f-21ac-429f-9de2-e744823e71b1",
+      "credentials": {
+        "slackApi": {
+          "id": "TXqokw3PLnAAEtHq",
+          "name": "WBTbot [BOT token]"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Отправка кандидату ссылку на тест": {
+      "main": [
+        [
+          {
+            "node": "Извещение HR об отправке кандидату ссылку на тест",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Извещение HR об отправке кандидату ссылку на тест": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "статус прохождения теста": {
+      "main": [
+        [
+          {
+            "node": "Проверка кандидата в табл Onboarding results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Получаем сообщение из Baserow": {
+      "main": [
+        [
+          {
+            "node": "статус прохождения теста",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Кандидат есть, обновляем дату выполнения теста",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "кандидата нет, создаем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Проверка кандидата в табл Onboarding results": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Кандидат есть, обновляем дату выполнения теста": {
+      "main": [
+        [
+          {
+            "node": "Отправка кандидату ссылку на тест",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "кандидата нет, создаем": {
+      "main": [
+        [
+          {
+            "node": "Отправка кандидату ссылку на тест",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get candidates list": {
+      "main": [
+        [
+          {
+            "node": "Рассылка двойшникам",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Отправка кандидату напоминалку про тест": {
+      "main": [
+        [
+          {
+            "node": "Рассылка двойшникам",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Извещение HR об отправке кандидату ссылку на тест1": {
+      "main": [
+        []
+      ]
+    },
+    "Напоминалки": {
+      "main": [
+        [
+          {
+            "node": "Get candidates list",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Извещение HR об отправке кандидату ссылку на тест1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Рассылка двойшникам": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Отправка кандидату напоминалку про тест",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Отправка формы с вопросами кандидату1": {
+      "main": [
+        [
+          {
+            "node": "Последняя страница формы",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Преобразование ответов",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Получение открытые вопросы": {
+      "main": [
+        [
+          {
+            "node": "Рандомная выборка 5 вопросов (открытые)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "объединение данных": {
+      "main": [
+        [
+          {
+            "node": "Отправка формы с вопросами кандидату1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Рандомная выборка 5 вопросов (закрытые вопросы)": {
+      "main": [
+        [
+          {
+            "node": "объединение данных",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Получение закрытых вопросов": {
+      "main": [
+        [
+          {
+            "node": "Рандомная выборка 5 вопросов (закрытые вопросы)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Рандомная выборка 5 вопросов (открытые)": {
+      "main": [
+        [
+          {
+            "node": "объединение данных",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Получение данных о кандидате",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Метка ВЕРНО": {
+      "main": [
+        [
+          {
+            "node": "Перебор вопросов",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Валидация ответов": {
+      "main": [
+        [
+          {
+            "node": "Метка ВЕРНО",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Метка ОШИБКА",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Оставляем закрытые вопросы": {
+      "main": [
+        [
+          {
+            "node": "Перебор вопросов",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Преобразование ответов": {
+      "main": [
+        [
+          {
+            "node": "Оставляем закрытые вопросы",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Оставляем открытые вопросы",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Метка ОШИБКА": {
+      "main": [
+        [
+          {
+            "node": "Перебор вопросов",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Перебор вопросов": {
+      "main": [
+        [
+          {
+            "node": "Data collect",
+            "type": "main",
+            "index": 2
+          }
+        ],
+        [
+          {
+            "node": "Валидация ответов",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Оставляем открытые вопросы": {
+      "main": [
+        [
+          {
+            "node": "Data collect",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Combine Items": {
+      "main": [
+        [
+          {
+            "node": "Заполнение результата тестирования и уменьшение жизни",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Data collect": {
+      "main": [
+        [
+          {
+            "node": "Combine Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Получение данных о кандидате": {
+      "main": [
+        [
+          {
+            "node": "Валидация попыток и личности кандидата",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Валидация попыток и личности кандидата": {
+      "main": [
+        [
+          {
+            "node": "Получение открытые вопросы",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Получение закрытых вопросов",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Data collect",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Не прошел верификацию",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Заполнение результата тестирования и уменьшение жизни": {
+      "main": [
+        [
+          {
+            "node": "Send results to HR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        []
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Get many rows",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Отправка кандидату ссылку на Повторную ссылку",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many rows": {
+      "main": [
+        [
+          {
+            "node": "Update a row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "9ef22d97-82fa-48ca-b459-090832dc3de4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f289f42f2da5bc1dc47f45028f4befe03bb5cd6a58f07dc936cf9e731b93d30c"
+  },
+  "id": "QBDtEpzpPuGjgVVp",
+  "tags": []
+}

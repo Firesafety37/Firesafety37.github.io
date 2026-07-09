@@ -1,0 +1,1108 @@
+{
+  "name": "тестовое задание создание описания для карточек",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -480,
+        352
+      ],
+      "id": "e1d8fb22-6770-41da-b063-8bc72d576429",
+      "name": "Telegram Trigger",
+      "webhookId": "f85ad72e-ebec-43f6-8e46-d832773f8b04",
+      "credentials": {
+        "telegramApi": {
+          "id": "Tx0mCUXzKozydtKY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Валидация сообщений (наличие теста; размер более 20 символов)",
+        "height": 592,
+        "width": 752
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -144,
+        272
+      ],
+      "typeVersion": 1,
+      "id": "d4411c27-052a-40d6-93de-fd423aa285f1",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "🤓 Для генерации вариантов описания передайте текст (размер текста не менее 20 символов)",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        320
+      ],
+      "id": "6a51773d-dd70-4c76-a675-84892bdffb39",
+      "name": "Передайте текст",
+      "webhookId": "8243b7c5-f4e7-4b1e-8c19-e5fe45e23afa",
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "credentials": {
+        "telegramApi": {
+          "id": "Tx0mCUXzKozydtKY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}",
+        "text": "🤓 Запрос должен быть чуть подробнее (не менее 20 символов)",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        704
+      ],
+      "id": "8a997b03-fb9b-42b6-9569-85c9c7ef61bc",
+      "name": "Нужно чуть подробнее",
+      "webhookId": "8243b7c5-f4e7-4b1e-8c19-e5fe45e23afa",
+      "retryOnFail": true,
+      "waitBetweenTries": 3000,
+      "maxTries": 2,
+      "credentials": {
+        "telegramApi": {
+          "id": "Tx0mCUXzKozydtKY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a9aed098-9fcc-43ce-b979-40f562a4b605",
+              "leftValue": "={{ $json.message.text }}",
+              "rightValue": "/start",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -320,
+        80
+      ],
+      "id": "e3b47d06-6014-4f89-b733-646a966a1a93",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "=🤓 Здравствуйте, я бот для генерации описания карточек товаров. \n🤖Пришлите мне короткое описание товара (размер текста не менее 20 символов), и я верну Вам 3 варианта описания.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -112,
+        64
+      ],
+      "id": "e2ad5816-ea7f-4cb3-8330-212bc4390e36",
+      "name": "Приветствие1",
+      "webhookId": "8243b7c5-f4e7-4b1e-8c19-e5fe45e23afa",
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "credentials": {
+        "telegramApi": {
+          "id": "Tx0mCUXzKozydtKY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Приветствие",
+        "height": 320,
+        "width": 480,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -368,
+        -64
+      ],
+      "typeVersion": 1,
+      "id": "97caa742-ab78-4abe-a61e-bfcca128ceef",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "empty",
+                      "singleValue": true
+                    },
+                    "id": "84f19053-a471-461c-84f9-2b7d282f5f5b"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Наличие текста"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "7754cab9-bfa2-4551-a851-b639cc49c7e1",
+                    "leftValue": "={{ $json.message.text.length }}",
+                    "rightValue": 20,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Хороший запрос"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "3d182295-e69f-4b0d-81ce-79d7b30f6446",
+                    "leftValue": "={{ $json.message.text.length }}",
+                    "rightValue": 20,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lt"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Короткое сообщение"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -80,
+        496
+      ],
+      "id": "7c281663-00a7-47c2-aad4-a7aade7ed493",
+      "name": "Валидация запроса"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are a professional Russian-speaking copywriter specializing in creating and editing product descriptions for online platforms such as Wildberries and Ozon.\n\nTOOLS:\n1. Error. If the meaning of the text in the **Исходный текст:** <<....>>  field differs from the product topic, be sure to use the \"Error\" tool. And provide blank lines as the AI ​​response.\n\nYour task is to write or improve product descriptions that are:\n- SEO optimized;\n- compelling and sales-oriented;\n- easy to read and interesting to Russian-speaking buyers;\n- ready for immediate use on product pages.\n\nLANGUAGE AND STYLE RULES\n1. Write exclusively in Russian. 2. DO NOT use emojis, decorative symbols, or unnecessary punctuation—they waste time and detract from professionalism.\n3. Maintain a confident, trustworthy, and slightly persuasive tone.\n4. Sentences should be short and natural—easy to read and quickly understood.\n5. Avoid empty words, clichés, and repetition.\n\nSTRUCTURE OF EACH DESCRIPTION\n1. Headline (up to 80 characters)\n2. Body copy (up to 800 characters):\n- Key features and benefits\n- 3-5 bullet points describing the product's benefits\n- Instructions for use or care (if necessary)\n3. Closing motivational phrase (why this product is a great choice)\n\nSEO OPTIMIZATION\n- Identify 5-10 relevant keywords for the product and integrate them organically into the text.\n- Don't overuse keywords or list too many of them—they should fit seamlessly into the text.\n- Readability is more important than keyword density.\n\nCATEGORY ADAPTATION\nAdjust the tone and emphasis depending on the product category:\n- Fashion: Emphasize comfort, design, and emotional appeal.\n- Electronics: Focus on features, performance, and reliability.\n- Household: Emphasize practicality, quality, and ease of use.\n- Cosmetics and beauty products: Emphasize ingredients, tactile sensations, and results. - Food: Focus on taste, freshness, and quality.\n- Baby products: Emphasize safety, comfort, and parental trust.\n\nEDIT MODE\nWhen editing existing text:\n- Keep the data intact.\n- Improve structure, clarity, and consistency.\n- Improve SEO and remove redundancy.\n– The headline should be no more than 80 characters long, and the main text no more than 800 characters.\n\nYour text should be written in high-quality Russian, understandable to people, and ready for publication on product pages on Wildberries or Ozon.",
+              "role": "system"
+            },
+            {
+              "content": "=Преобразуй исходный текст в три SEO-оптимизированных варианта описания карточек товаров для маркетплейсов (Wildberries, Ozon). \nВсе описания должны быть написаны на русском языке и соответствовать правилам коммерческого копирайтинга.\n\nВерни ответ строго в формате JSON:\n\n{\n  \"variants\": [\n    {\"title\": \"<заголовок до 80 символов>\", \"body\": \"<основной текст до 800 символов, 3–5 выгод и преимуществ>\"},\n    {\"title\": \"<заголовок до 80 символов>\", \"body\": \"<основной текст до 800 символов, 3–5 выгод и преимуществ>\"},\n    {\"title\": \"<заголовок до 80 символов>\", \"body\": \"<основной текст до 800 символов, 3–5 выгод и преимуществ>\"}\n  ],\n  \"meta\": {\n    \"model\": \"<название модели, например 'gpt-4o-mini'>\",\n    \"temperature\": <число, например 0.7>\n  }\n}\n\n\n**Исходный текст:** <<{{ $json.message.text }}>>\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        208,
+        512
+      ],
+      "id": "3308ff21-f364-4465-9c03-dca5425b6126",
+      "name": "Обращение к ИИ",
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "Z7qLpr2jntTdfdsX",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "functionCode": "// Вход: ответ от ноды \"Обращение к ИИ\" приходит как строка JSON в message.content\n// Выход: нормализованный объект с variants[3], meta, original_text, user_id, chat_id, timestamp\n\nconst inputItem = $input.first();\nconst aiResponse = inputItem?.json?.message?.content;\n\nif (typeof aiResponse !== 'string' || aiResponse.trim().length === 0) {\n  throw new Error('Пустой ответ ИИ или неверный формат: message.content отсутствует');\n}\n\n// Извлекаем первую JSON-подстроку на случай, если модель добавила текст вокруг\nconst jsonMatch = aiResponse.match(/\\{[\\s\\S]*\\}/);\nif (!jsonMatch) {\n  throw new Error('JSON не найден в ответе ИИ');\n}\n\nlet parsed;\ntry {\n  parsed = JSON.parse(jsonMatch[0]);\n} catch (e) {\n  throw new Error(`Ошибка парсинга JSON: ${e.message}`);\n}\n\n// Базовая валидация структуры\nif (!parsed || !Array.isArray(parsed.variants) || parsed.variants.length !== 3) {\n  throw new Error('Неверная структура: ожидаются ровно 3 объекта в \"variants\"');\n}\n\n// Нормализация длины и типов\nconst normalizeVariant = (variant, index) => {\n  const rawTitle = typeof variant?.title === 'string' ? variant.title : `Вариант ${index + 1}`;\n  const rawBody = typeof variant?.body === 'string' ? variant.body : '';\n\n  const title = rawTitle.length > 80 ? rawTitle.slice(0, 77) + '...' : rawTitle;\n  const body = rawBody.length > 800 ? rawBody.slice(0, 797) + '...' : rawBody;\n\n  return { title, body };\n};\n\nconst normalizedVariants = parsed.variants.map((v, i) => normalizeVariant(v, i));\n\n// Достаём оригинальные данные пользователя из \"Telegram Trigger\"\nconst tg = $('Telegram Trigger').item?.json?.message;\nconst originalText = tg?.text ?? '';\nconst userId = tg?.from?.id ?? null;\nconst chatId = tg?.chat?.id ?? null;\n\nconst result = {\n  variants: normalizedVariants,\n  meta: parsed.meta ?? { model: 'gpt-4o-mini', temperature: 0.7 },\n  original_text: originalText,\n  user_id: userId,\n  chat_id: chatId,\n  timestamp: new Date().toISOString()\n};\n\nreturn [{ json: result }];"
+      },
+      "id": "05ef068c-61d2-4e13-9598-97289b874da5",
+      "name": "Обработка ответа ИИ",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        736,
+        512
+      ],
+      "retryOnFail": false
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "telegram_message",
+              "value": "=Готово! Вот 3 версии продающего описания:\n\n1️⃣ **{{ $json.variants[0].title }}**\n{{ $json.variants[0].body.substring(0, 200) }}{{ $json.variants[0].body.length > 200 ? '...' : '' }}\n\n2️⃣ **{{ $json.variants[1].title }}**\n{{ $json.variants[1].body.substring(0, 200) }}{{ $json.variants[1].body.length > 200 ? '...' : '' }}\n\n3️⃣ **{{ $json.variants[2].title }}**\n{{ $json.variants[2].body.substring(0, 200) }}{{ $json.variants[2].body.length > 200 ? '...' : '' }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "58beca72-ef38-4897-8bc6-bb7b840a8631",
+      "name": "Форматирование сообщения",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        976,
+        512
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.telegram_message }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "f2dd591a-74a6-4092-8023-edc34d546980",
+      "name": "Отправка в Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1216,
+        512
+      ],
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "webhookId": "defd7791-b939-40a5-a09c-37c2c9c25747",
+      "credentials": {
+        "telegramApi": {
+          "id": "Tx0mCUXzKozydtKY",
+          "name": "Telegram account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        224,
+        80
+      ],
+      "id": "a525f771-756a-43c1-8c01-b963b81f79c4",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1roqBTIBKuUhUhU-kskUSVVrTZUbBZj9eDF9x5h_XTvw",
+          "mode": "list",
+          "cachedResultName": "Тестовое",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1roqBTIBKuUhUhU-kskUSVVrTZUbBZj9eDF9x5h_XTvw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Лист1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1roqBTIBKuUhUhU-kskUSVVrTZUbBZj9eDF9x5h_XTvw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "timestamp": "={{ $('Обработка ответа ИИ').first().json.timestamp }}",
+            "user_id": "={{ $('Обработка ответа ИИ').first().json.user_id }}",
+            "input_text": "={{ $('Обработка ответа ИИ').first().json.original_text }}",
+            "variant1_title": "={{ $('Обработка ответа ИИ').first().json.variants[0].title }}",
+            "variant1_body": "={{ $('Обработка ответа ИИ').first().json.variants[0].body }}",
+            "variant2_title": "={{ $('Обработка ответа ИИ').first().json.variants[1].title }}",
+            "variant2_body": "={{ $('Обработка ответа ИИ').first().json.variants[1].body }}",
+            "variant3_title": "={{ $('Обработка ответа ИИ').first().json.variants[2].title }}",
+            "variant3_body": "={{ $('Обработка ответа ИИ').first().json.variants[2].body }}",
+            "status ok/error": "ok"
+          },
+          "matchingColumns": [
+            "timestamp"
+          ],
+          "schema": [
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "user_id",
+              "displayName": "user_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "input_text",
+              "displayName": "input_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "variant1_title",
+              "displayName": "variant1_title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "variant1_body",
+              "displayName": "variant1_body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "variant2_title",
+              "displayName": "variant2_title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "variant2_body",
+              "displayName": "variant2_body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "variant3_title",
+              "displayName": "variant3_title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "variant3_body",
+              "displayName": "variant3_body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status ok/error",
+              "displayName": "status ok/error",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "3f97b042-6846-4e72-94f7-c27010e47ae6",
+      "name": "Сохранение инф в Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        1424,
+        416
+      ],
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "jDuIWGIOwPSqxxHw",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1roqBTIBKuUhUhU-kskUSVVrTZUbBZj9eDF9x5h_XTvw",
+          "mode": "list",
+          "cachedResultName": "Тестовое",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1roqBTIBKuUhUhU-kskUSVVrTZUbBZj9eDF9x5h_XTvw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Лист1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1roqBTIBKuUhUhU-kskUSVVrTZUbBZj9eDF9x5h_XTvw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "timestamp": "={{ $('Обработка ответа ИИ').first().json.timestamp }}",
+            "status ok/error": "error",
+            "user_id": "{{ $('Обработка ответа ИИ').first().json.user_id }}"
+          },
+          "matchingColumns": [
+            "timestamp"
+          ],
+          "schema": [
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "user_id",
+              "displayName": "user_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "input_text",
+              "displayName": "input_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "variant1_title",
+              "displayName": "variant1_title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "variant1_body",
+              "displayName": "variant1_body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "variant2_title",
+              "displayName": "variant2_title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "variant2_body",
+              "displayName": "variant2_body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "variant3_title",
+              "displayName": "variant3_title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "variant3_body",
+              "displayName": "variant3_body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "status ok/error",
+              "displayName": "status ok/error",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "67e6c654-a4f7-4a6b-999d-3785b47de8d0",
+      "name": "Отметка об ошибке",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        1424,
+        672
+      ],
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "jDuIWGIOwPSqxxHw",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6323bb5e-9b1f-4679-b2f3-982ee699e916",
+              "name": "Имя флоу: ",
+              "value": "={{ $json.workflow.name }}",
+              "type": "string"
+            },
+            {
+              "id": "0aee2990-bd36-4bd3-b441-5a65ef265805",
+              "name": "Ошибка  в ноде ",
+              "value": "={{ $json.execution.lastNodeExecuted }}",
+              "type": "string"
+            },
+            {
+              "id": "661db573-c09b-4d54-bcdd-1206283fae8c",
+              "name": "Время",
+              "value": "={{ $now }}",
+              "type": "string"
+            },
+            {
+              "id": "a93f3c05-169b-46b1-8da6-b214657455f7",
+              "name": "текст ошибки",
+              "value": "={{ $json.execution.error.message }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        432,
+        80
+      ],
+      "id": "9f67e4a7-5405-49d7-95d3-1e86fdce18e2",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "chatId": "1119930877",
+        "text": "=❗ Ошибка в рабочем флоу: ❗\n\nДата фиксации: {{ $json['Время'] }}\nНазвание флоу: {{ $json['Имя флоу: '] }}\nНода: {{ $json['Ошибка  в ноде '] }}\nТекст ошибки: {{ $json['текст ошибки'] }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        640,
+        80
+      ],
+      "id": "658753a1-64c7-4837-9510-fc27c33ffab3",
+      "name": "Send a text message",
+      "webhookId": "08391c6a-edc2-40ed-b7ef-ec2a763d2ad3",
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "credentials": {
+        "telegramApi": {
+          "id": "Tx0mCUXzKozydtKY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Фиксация ошибок (добавьте id разработчика для получения ошибок работы флоу)",
+        "height": 320,
+        "width": 752,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        128,
+        -64
+      ],
+      "typeVersion": 1,
+      "id": "ee3ea115-9870-454c-9a16-47cf90348686",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Валидация ответа ИИ",
+        "height": 592,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        672,
+        272
+      ],
+      "typeVersion": 1,
+      "id": "3776983c-b316-4e66-a655-0879b8d04277",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## Отправка и оформление результатов в GoogleSheets",
+        "height": 592,
+        "width": 688
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        944,
+        272
+      ],
+      "typeVersion": 1,
+      "id": "9c8981a3-32e8-44b8-8e32-5afaef162d89",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1roqBTIBKuUhUhU-kskUSVVrTZUbBZj9eDF9x5h_XTvw",
+          "mode": "list",
+          "cachedResultName": "Тестовое",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1roqBTIBKuUhUhU-kskUSVVrTZUbBZj9eDF9x5h_XTvw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Лист1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1roqBTIBKuUhUhU-kskUSVVrTZUbBZj9eDF9x5h_XTvw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status ok/error": "error",
+            "input_text": "={{ $('Telegram Trigger').item.json.message.text }}",
+            "user_id": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+            "timestamp": "={{ $now }}"
+          },
+          "matchingColumns": [
+            "timestamp"
+          ],
+          "schema": [
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "user_id",
+              "displayName": "user_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "input_text",
+              "displayName": "input_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "variant1_title",
+              "displayName": "variant1_title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "variant1_body",
+              "displayName": "variant1_body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "variant2_title",
+              "displayName": "variant2_title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "variant2_body",
+              "displayName": "variant2_body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "variant3_title",
+              "displayName": "variant3_title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "variant3_body",
+              "displayName": "variant3_body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "status ok/error",
+              "displayName": "status ok/error",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        448,
+        720
+      ],
+      "id": "b81aa15d-4fdb-4d71-a7ff-c1e3de86203e",
+      "name": "Error",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "jDuIWGIOwPSqxxHw",
+          "name": "Google Sheets account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Приветствие1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Валидация запроса",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Валидация запроса": {
+      "main": [
+        [
+          {
+            "node": "Передайте текст",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Обращение к ИИ",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Нужно чуть подробнее",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Обработка ответа ИИ": {
+      "main": [
+        [
+          {
+            "node": "Форматирование сообщения",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Форматирование сообщения": {
+      "main": [
+        [
+          {
+            "node": "Отправка в Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Отправка в Telegram": {
+      "main": [
+        [
+          {
+            "node": "Сохранение инф в Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Отметка об ошибке",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Обращение к ИИ": {
+      "main": [
+        [
+          {
+            "node": "Обработка ответа ИИ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Передайте текст": {
+      "main": [
+        []
+      ]
+    },
+    "Нужно чуть подробнее": {
+      "main": [
+        []
+      ]
+    },
+    "Отметка об ошибке": {
+      "main": [
+        []
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error": {
+      "ai_tool": [
+        [
+          {
+            "node": "Обращение к ИИ",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "8ead6d7b-e50d-4995-a9bf-888668b969f2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9beb0202b1668ef9afcd433cd676d0026b31ab7aa0cf08bcde79b6bf59508021"
+  },
+  "id": "dWZG2rCWDaU7bCCY",
+  "tags": []
+}
