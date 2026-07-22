@@ -254,9 +254,9 @@
       "parameters": {
         "calendar": {
           "__rl": true,
-          "value": "taras.chek95@gmail.com",
+          "value": "your-email@gmail.com",
           "mode": "list",
-          "cachedResultName": "taras.chek95@gmail.com"
+          "cachedResultName": "your-email@gmail.com"
         },
         "start": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start', ``, 'string') }}",
         "end": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End', ``, 'string') }}",
@@ -304,9 +304,9 @@
         "operation": "delete",
         "calendar": {
           "__rl": true,
-          "value": "taras.chek95@gmail.com",
+          "value": "your-email@gmail.com",
           "mode": "list",
-          "cachedResultName": "taras.chek95@gmail.com"
+          "cachedResultName": "your-email@gmail.com"
         },
         "eventId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Event_ID', ``, 'string') }}",
         "options": {}
@@ -331,9 +331,9 @@
         "operation": "getAll",
         "calendar": {
           "__rl": true,
-          "value": "taras.chek95@gmail.com",
+          "value": "your-email@gmail.com",
           "mode": "list",
-          "cachedResultName": "taras.chek95@gmail.com"
+          "cachedResultName": "your-email@gmail.com"
         },
         "timeMin": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('After', ``, 'string') }}",
         "timeMax": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Before', ``, 'string') }}",

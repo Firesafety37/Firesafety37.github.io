@@ -37,7 +37,7 @@
                                 "scoped": "true",
                                 "connection": "google-restricted"
                             },
-                            "label": "My Google Restricted connection (arseny.chek95@gmail.com)"
+                            "label": "My Google Restricted connection (your-email@gmail.com)"
                         },
                         "destination": {
                             "label": "My Drive"
@@ -170,7 +170,7 @@
                                 "scoped": "true",
                                 "connection": "google-restricted"
                             },
-                            "label": "My Google Restricted connection (arseny.chek95@gmail.com)"
+                            "label": "My Google Restricted connection (your-email@gmail.com)"
                         }
                     }
                 },
@@ -1046,7 +1046,7 @@
                                 "scoped": "true",
                                 "connection": "google"
                             },
-                            "label": "My Google connection (arseny.chek95@gmail.com)"
+                            "label": "My Google connection (your-email@gmail.com)"
                         }
                     }
                 },
