@@ -14,7 +14,6 @@
         -336,
         -992
       ],
-      "id": "beb3d4ce-6c1b-4ed4-a242-9fbd1c160698",
       "name": "Sticky Note"
     },
     {
@@ -36,15 +35,7 @@
         880,
         -624
       ],
-      "id": "cf6f17f9-e0bd-43b5-8e6d-521cb9789d2f",
-      "name": "Отправка кандидату ссылку на тест",
-      "webhookId": "e34a741f-21ac-429f-9de2-e744823e71b1",
-      "credentials": {
-        "slackApi": {
-          "id": "TXqokw3PLnAAEtHq",
-          "name": "WBTbot [BOT token]"
-        }
-      }
+      "name": "Отправка кандидату ссылку на тест"
     },
     {
       "parameters": {
@@ -66,15 +57,7 @@
         1056,
         -624
       ],
-      "id": "2d7620d7-3249-4193-a196-59dccdcdd33f",
-      "name": "Извещение HR об отправке кандидату ссылку на тест",
-      "webhookId": "e34a741f-21ac-429f-9de2-e744823e71b1",
-      "credentials": {
-        "slackApi": {
-          "id": "TXqokw3PLnAAEtHq",
-          "name": "WBTbot [BOT token]"
-        }
-      }
+      "name": "Извещение HR об отправке кандидату ссылку на тест"
     },
     {
       "parameters": {
@@ -116,7 +99,6 @@
         -16,
         -624
       ],
-      "id": "29010022-064c-430f-9701-e083b0fb3db6",
       "name": "статус прохождения теста"
     },
     {
@@ -132,9 +114,7 @@
         -272,
         -624
       ],
-      "id": "8bf57297-9678-4364-9dfe-dbb7977c5426",
-      "name": "Получаем сообщение из Baserow",
-      "webhookId": "ee9b9f29-33c6-4461-82b0-1346b22b8350"
+      "name": "Получаем сообщение из Baserow"
     },
     {
       "parameters": {
@@ -167,7 +147,6 @@
         368,
         -624
       ],
-      "id": "2a94702d-2c53-4e4f-ad6c-55bd29fe60a1",
       "name": "If"
     },
     {
@@ -182,7 +161,6 @@
         -832
       ],
       "typeVersion": 1,
-      "id": "a36a3c41-447a-4fc6-a966-ac3da03a3575",
       "name": "Sticky Note1"
     },
     {
@@ -212,15 +190,7 @@
         176,
         -624
       ],
-      "id": "084ca35c-938c-4378-bd2c-c526bbc64beb",
-      "name": "Проверка кандидата в табл Onboarding results",
-      "alwaysOutputData": true,
-      "credentials": {
-        "baserowApi": {
-          "id": "NyOClyxTnP3ydORa",
-          "name": "Baserow account Onboarding exam"
-        }
-      }
+      "name": "Проверка кандидата в табл Onboarding results"
     },
     {
       "parameters": {
@@ -243,14 +213,7 @@
         592,
         -752
       ],
-      "id": "97af9b6f-fd94-4fcb-9c3e-3eaa256fa40b",
-      "name": "Кандидат есть, обновляем дату выполнения теста",
-      "credentials": {
-        "baserowApi": {
-          "id": "NyOClyxTnP3ydORa",
-          "name": "Baserow account Onboarding exam"
-        }
-      }
+      "name": "Кандидат есть, обновляем дату выполнения теста"
     },
     {
       "parameters": {
@@ -284,14 +247,7 @@
         592,
         -560
       ],
-      "id": "7e0d73e4-a6c7-4cbc-87e8-dc407cb48bd5",
-      "name": "кандидата нет, создаем",
-      "credentials": {
-        "baserowApi": {
-          "id": "NyOClyxTnP3ydORa",
-          "name": "Baserow account Onboarding exam"
-        }
-      }
+      "name": "кандидата нет, создаем"
     },
     {
       "parameters": {
@@ -317,14 +273,7 @@
         -1520,
         0
       ],
-      "id": "7163d2d5-01fc-4884-a7a8-3bf8a65c93d7",
-      "name": "ТЕСТИРОВАНИЕ БОТА",
-      "credentials": {
-        "baserowApi": {
-          "id": "NyOClyxTnP3ydORa",
-          "name": "Baserow account Onboarding exam"
-        }
-      }
+      "name": "ТЕСТИРОВАНИЕ БОТА"
     },
     {
       "parameters": {
@@ -348,14 +297,7 @@
         -80,
         608
       ],
-      "id": "f7edbf39-8bbd-4c48-9ed7-8508d6328c58",
-      "name": "Get candidates list",
-      "credentials": {
-        "baserowApi": {
-          "id": "NyOClyxTnP3ydORa",
-          "name": "Baserow account Onboarding exam"
-        }
-      }
+      "name": "Get candidates list"
     },
     {
       "parameters": {
@@ -377,15 +319,7 @@
         800,
         512
       ],
-      "id": "ad670dcc-c906-44f7-9875-90db0a2928d1",
-      "name": "Извещение HR об отправке кандидату ссылку на тест1",
-      "webhookId": "e34a741f-21ac-429f-9de2-e744823e71b1",
-      "credentials": {
-        "slackApi": {
-          "id": "TXqokw3PLnAAEtHq",
-          "name": "WBTbot [BOT token]"
-        }
-      }
+      "name": "Извещение HR об отправке кандидату ссылку на тест1"
     },
     {
       "parameters": {
@@ -406,15 +340,7 @@
         448,
         672
       ],
-      "id": "08728c77-03b1-4a65-b2c8-c620bfaa8fa5",
-      "name": "Отправка кандидату напоминалку про тест",
-      "webhookId": "e34a741f-21ac-429f-9de2-e744823e71b1",
-      "credentials": {
-        "slackApi": {
-          "id": "TXqokw3PLnAAEtHq",
-          "name": "WBTbot [BOT token]"
-        }
-      }
+      "name": "Отправка кандидату напоминалку про тест"
     },
     {
       "parameters": {
@@ -437,7 +363,6 @@
         -288,
         608
       ],
-      "id": "dcbb44a7-3c3b-4a89-b076-b13f6064c6e2",
       "name": "Напоминалки"
     },
     {
@@ -452,7 +377,6 @@
         1248,
         -624
       ],
-      "id": "124381de-73b5-4eb4-b28a-8f02dcf2b1d0",
       "name": "Respond to Webhook"
     },
     {
@@ -467,7 +391,6 @@
         336,
         512
       ],
-      "id": "b458c511-5ad8-439e-a685-9c48643d0202",
       "name": "Merge"
     },
     {
@@ -480,7 +403,6 @@
         544,
         512
       ],
-      "id": "cee6d8e9-cb48-4168-a0ea-1cd371be9e2f",
       "name": "Code in JavaScript"
     },
     {
@@ -496,7 +418,6 @@
         464
       ],
       "typeVersion": 1,
-      "id": "e1c282ae-1e64-4058-b628-9ee81e85ed00",
       "name": "Sticky Note2"
     },
     {
@@ -509,7 +430,6 @@
         160,
         656
       ],
-      "id": "cbbd7342-6741-41a2-bd8e-283f9a6d9045",
       "name": "Рассылка двойшникам"
     },
     {
@@ -520,7 +440,6 @@
         -240,
         1024
       ],
-      "id": "be87040f-95bc-4fc5-825d-f7f6fab79750",
       "name": "Error Trigger"
     },
     {
@@ -561,7 +480,6 @@
         -32,
         1024
       ],
-      "id": "e7a3524e-0cd7-4c66-be23-17cb88bea17e",
       "name": "Edit Fields"
     },
     {
@@ -577,7 +495,6 @@
         880
       ],
       "typeVersion": 1,
-      "id": "75b36be2-bbbe-4bc6-a190-188768f729ee",
       "name": "Sticky Note7"
     },
     {
@@ -593,7 +510,6 @@
         -128
       ],
       "typeVersion": 1,
-      "id": "8aeab249-0a45-4762-bb50-f7bb2c4a798c",
       "name": "Sticky Note3"
     },
     {
@@ -716,9 +632,7 @@
         1312,
         48
       ],
-      "id": "121ec64a-fd2e-4b64-a498-9488fc31a9cc",
-      "name": "Отправка формы с вопросами кандидату1",
-      "webhookId": "249740f7-4773-4f36-88f1-49c99bf51fad"
+      "name": "Отправка формы с вопросами кандидату1"
     },
     {
       "parameters": {
@@ -743,14 +657,7 @@
         528,
         160
       ],
-      "id": "cf7e159c-ede7-4db0-8a99-7a520cf02e8a",
-      "name": "Получение открытые вопросы",
-      "credentials": {
-        "baserowApi": {
-          "id": "NyOClyxTnP3ydORa",
-          "name": "Baserow account Onboarding exam"
-        }
-      }
+      "name": "Получение открытые вопросы"
     },
     {
       "parameters": {
@@ -764,7 +671,6 @@
         1088,
         48
       ],
-      "id": "9320330c-0596-405d-a668-ac3b4025c554",
       "name": "объединение данных"
     },
     {
@@ -777,7 +683,6 @@
         752,
         -48
       ],
-      "id": "8a903dba-ebfa-48a4-91a3-747c4aa2b7e5",
       "name": "Рандомная выборка 5 вопросов (закрытые вопросы)"
     },
     {
@@ -803,15 +708,7 @@
         528,
         -48
       ],
-      "id": "de862465-98fc-4822-be95-25b150ac965c",
-      "name": "Получение закрытых вопросов",
-      "alwaysOutputData": false,
-      "credentials": {
-        "baserowApi": {
-          "id": "NyOClyxTnP3ydORa",
-          "name": "Baserow account Onboarding exam"
-        }
-      }
+      "name": "Получение закрытых вопросов"
     },
     {
       "parameters": {
@@ -823,7 +720,6 @@
         752,
         160
       ],
-      "id": "27ccc619-f66d-43dc-9382-18691387306b",
       "name": "Рандомная выборка 5 вопросов (открытые)"
     },
     {
@@ -846,9 +742,7 @@
         -256,
         16
       ],
-      "id": "fcf6d49f-6d9e-4802-aa51-6f24211e4e3b",
-      "name": "On form submission",
-      "webhookId": "3f8ab0fc-d2b7-4fa2-a484-a53cde52fc5c"
+      "name": "On form submission"
     },
     {
       "parameters": {
@@ -876,7 +770,6 @@
         2576,
         128
       ],
-      "id": "fe8cdf78-202e-4c3f-ad03-590c54ffe9cd",
       "name": "Метка ВЕРНО"
     },
     {
@@ -892,9 +785,7 @@
         1504,
         256
       ],
-      "id": "560af0b6-c292-4231-be6a-4f264fcdc600",
-      "name": "Последняя страница формы",
-      "webhookId": "5272798c-f44b-406b-9038-9b00daf52da9"
+      "name": "Последняя страница формы"
     },
     {
       "parameters": {
@@ -926,7 +817,6 @@
         2288,
         144
       ],
-      "id": "dc8cf631-59cf-4a51-bfc8-3cbdb995ec5d",
       "name": "Валидация ответов"
     },
     {
@@ -959,7 +849,6 @@
         1776,
         128
       ],
-      "id": "b9a627a8-f8cb-4af5-95ac-b21b7c2d278b",
       "name": "Оставляем закрытые вопросы"
     },
     {
@@ -972,7 +861,6 @@
         1504,
         -64
       ],
-      "id": "5af8b5e0-ef65-4b15-8876-d3985adfc2d6",
       "name": "Преобразование ответов"
     },
     {
@@ -1001,7 +889,6 @@
         2576,
         272
       ],
-      "id": "379e0b5a-4a45-43da-bbcb-c0ed50784d8a",
       "name": "Метка ОШИБКА"
     },
     {
@@ -1017,7 +904,6 @@
         16
       ],
       "typeVersion": 1,
-      "id": "b6e96f7d-8e4e-4336-b649-97fdeb98bed9",
       "name": "Sticky Note4"
     },
     {
@@ -1030,7 +916,6 @@
         2000,
         128
       ],
-      "id": "40ed8fcc-eafe-4918-bf76-09d37fb2e0a6",
       "name": "Перебор вопросов"
     },
     {
@@ -1063,7 +948,6 @@
         1776,
         -192
       ],
-      "id": "2f2adae5-ffcd-423f-bf38-189777b9316b",
       "name": "Оставляем открытые вопросы"
     },
     {
@@ -1079,7 +963,6 @@
         -352
       ],
       "typeVersion": 1,
-      "id": "4654b401-df37-4646-a610-9122c5c82133",
       "name": "Sticky Note5"
     },
     {
@@ -1092,7 +975,6 @@
         2336,
         -192
       ],
-      "id": "00008c6f-5a42-4e01-a371-f018cb83d3cf",
       "name": "Combine Items"
     },
     {
@@ -1105,7 +987,6 @@
         2144,
         -192
       ],
-      "id": "12c2ccfb-dd2a-408d-a271-51599c235121",
       "name": "Data collect"
     },
     {
@@ -1128,15 +1009,7 @@
         2704,
         -192
       ],
-      "id": "9d3081b6-d2e6-4103-82c2-c0c0f6c576ae",
-      "name": "Send results to HR",
-      "webhookId": "7a5243ab-d0cd-4080-b6e5-6a51af03beec",
-      "credentials": {
-        "slackApi": {
-          "id": "TXqokw3PLnAAEtHq",
-          "name": "WBTbot [BOT token]"
-        }
-      }
+      "name": "Send results to HR"
     },
     {
       "parameters": {
@@ -1160,15 +1033,7 @@
         -80,
         16
       ],
-      "id": "558f3eaf-5339-405f-86de-def9d8ce907f",
-      "name": "Получение данных о кандидате",
-      "alwaysOutputData": true,
-      "credentials": {
-        "baserowApi": {
-          "id": "NyOClyxTnP3ydORa",
-          "name": "Baserow account Onboarding exam"
-        }
-      }
+      "name": "Получение данных о кандидате"
     },
     {
       "parameters": {
@@ -1210,7 +1075,6 @@
         96,
         16
       ],
-      "id": "9342a9f2-5bea-40c5-8f36-0bba274a4ec4",
       "name": "Валидация попыток и личности кандидата"
     },
     {
@@ -1226,9 +1090,7 @@
         240,
         176
       ],
-      "id": "2c2ab409-c05f-4856-9141-2c0b9276f900",
-      "name": "Не прошел верификацию",
-      "webhookId": "94d9a0e5-0043-4bba-b23f-77957747fbb4"
+      "name": "Не прошел верификацию"
     },
     {
       "parameters": {
@@ -1259,14 +1121,7 @@
         2512,
         -192
       ],
-      "id": "1382bc24-d6df-4b04-8fee-e43195677fd3",
-      "name": "Заполнение результата тестирования и уменьшение жизни",
-      "credentials": {
-        "baserowApi": {
-          "id": "NyOClyxTnP3ydORa",
-          "name": "Baserow account Onboarding exam"
-        }
-      }
+      "name": "Заполнение результата тестирования и уменьшение жизни"
     },
     {
       "parameters": {
@@ -1281,7 +1136,6 @@
         -368
       ],
       "typeVersion": 1,
-      "id": "41585c3b-ca42-411b-b625-ebffd7a6f813",
       "name": "Sticky Note6"
     },
     {
@@ -1296,7 +1150,6 @@
         -352
       ],
       "typeVersion": 1,
-      "id": "63286bd5-b826-48e3-86b2-9bb9c5418691",
       "name": "Sticky Note8"
     },
     {
@@ -1312,7 +1165,6 @@
         -96
       ],
       "typeVersion": 1,
-      "id": "dd95af26-ec51-4180-befc-3d96c11f864d",
       "name": "Sticky Note9"
     },
     {
@@ -1333,16 +1185,8 @@
         176,
         1024
       ],
-      "id": "40b1f089-80d2-4ad0-9a1c-54a01fc3ac6f",
       "name": "Send a message",
-      "webhookId": "63fad73d-da81-4ff0-a408-b54f14b6863a",
-      "retryOnFail": true,
-      "credentials": {
-        "slackApi": {
-          "id": "TXqokw3PLnAAEtHq",
-          "name": "WBTbot [BOT token]"
-        }
-      }
+      "retryOnFail": true
     },
     {
       "parameters": {
@@ -1356,7 +1200,6 @@
         320
       ],
       "typeVersion": 1,
-      "id": "16817876-b4ba-46b3-8256-2acbd2063fa2",
       "name": "Sticky Note10"
     },
     {
@@ -1370,9 +1213,7 @@
         1712,
         -752
       ],
-      "id": "72c1d538-d497-471c-bcf5-94a3e0461a26",
-      "name": "Webhook",
-      "webhookId": "6fb4ccb7-18c0-4e16-8ea5-323c45b5d0cd"
+      "name": "Webhook"
     },
     {
       "parameters": {
@@ -1387,7 +1228,6 @@
         -992
       ],
       "typeVersion": 1,
-      "id": "671654ed-2da2-446f-be3f-567deac43096",
       "name": "Sticky Note11"
     },
     {
@@ -1453,7 +1293,6 @@
         1920,
         -752
       ],
-      "id": "90f0990f-9b81-4ba9-8c31-e1e78ee96eac",
       "name": "Switch"
     },
     {
@@ -1477,14 +1316,7 @@
         2144,
         -832
       ],
-      "id": "d3824d0a-0c2c-49bb-83b5-7cf2a4b37331",
-      "name": "Get many rows",
-      "credentials": {
-        "baserowApi": {
-          "id": "NyOClyxTnP3ydORa",
-          "name": "Baserow account Onboarding exam"
-        }
-      }
+      "name": "Get many rows"
     },
     {
       "parameters": {
@@ -1507,14 +1339,7 @@
         2336,
         -832
       ],
-      "id": "f1c6c54e-e1b0-4486-a867-b43f9f5b69eb",
-      "name": "Update a row",
-      "credentials": {
-        "baserowApi": {
-          "id": "NyOClyxTnP3ydORa",
-          "name": "Baserow account Onboarding exam"
-        }
-      }
+      "name": "Update a row"
     },
     {
       "parameters": {
@@ -1535,18 +1360,9 @@
         2144,
         -640
       ],
-      "id": "bb04d92c-acd6-4573-a2c3-faf8b6e0bf39",
-      "name": "Отправка кандидату ссылку на Повторную ссылку",
-      "webhookId": "e34a741f-21ac-429f-9de2-e744823e71b1",
-      "credentials": {
-        "slackApi": {
-          "id": "TXqokw3PLnAAEtHq",
-          "name": "WBTbot [BOT token]"
-        }
-      }
+      "name": "Отправка кандидату ссылку на Повторную ссылку"
     }
   ],
-  "pinData": {},
   "connections": {
     "Отправка кандидату ссылку на тест": {
       "main": [
@@ -2044,15 +1860,5 @@
       ]
     }
   },
-  "active": true,
-  "settings": {
-    "executionOrder": "v1"
-  },
-  "versionId": "9ef22d97-82fa-48ca-b459-090832dc3de4",
-  "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "f289f42f2da5bc1dc47f45028f4befe03bb5cd6a58f07dc936cf9e731b93d30c"
-  },
-  "id": "QBDtEpzpPuGjgVVp",
-  "tags": []
+  "settings": {}
 }

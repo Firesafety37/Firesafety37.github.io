@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Резюме | AI Integration Specialist</title>
+    <title>Тарас Воронцов | AI Automation & Integration Specialist</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
@@ -13,34 +13,38 @@
         }
 
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #f59e0b;
-            --text-color: #1f2937;
-            --text-light: #6b7280;
-            --bg-color: #ffffff;
-            --bg-light: #f8fafc;
-            --border-color: #e5e7eb;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --primary-color: #38bdf8;
+            --secondary-color: #6366f1;
+            --accent-color: #22c55e;
+            --text-color: #e5edf7;
+            --text-light: #9fb0c7;
+            --bg-color: #070b14;
+            --bg-light: #0f172a;
+            --bg-card: rgba(15, 23, 42, 0.86);
+            --border-color: rgba(148, 163, 184, 0.18);
+            --shadow: 0 16px 40px rgba(0, 0, 0, 0.32);
+            --shadow-lg: 0 28px 80px rgba(15, 23, 42, 0.55);
         }
 
-        [data-theme="dark"] {
-            --primary-color: #3b82f6;
-            --secondary-color: #2563eb;
-            --accent-color: #fbbf24;
-            --text-color: #f9fafb;
-            --text-light: #d1d5db;
-            --bg-color: #111827;
-            --bg-light: #1f2937;
-            --border-color: #374151;
+        [data-theme="light"] {
+            --primary-color: #2563eb;
+            --secondary-color: #4f46e5;
+            --accent-color: #16a34a;
+            --text-color: #0f172a;
+            --text-light: #475569;
+            --bg-color: #f8fafc;
+            --bg-light: #ffffff;
+            --bg-card: #ffffff;
+            --border-color: #e2e8f0;
+            --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+            --shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.16);
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: var(--text-color);
-            background: var(--bg-color);
+            background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 32%), radial-gradient(circle at top right, rgba(99, 102, 241, 0.14), transparent 28%), var(--bg-color);
             transition: all 0.3s ease;
         }
 
@@ -52,9 +56,9 @@
 
         /* Header */
         .header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 60px 0;
+            background: linear-gradient(135deg, #020617 0%, #0f172a 48%, #172554 100%);
+            color: #f8fafc;
+            padding: 84px 0 72px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -80,16 +84,16 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            border: 5px solid white;
+            border: 1px solid rgba(56, 189, 248, 0.45);
             margin: 0 auto 30px;
-            background: var(--bg-light);
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(30, 41, 59, 0.94));
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 60px;
             color: var(--primary-color);
             box-shadow: var(--shadow-lg);
-            animation: float 3s ease-in-out infinite;
+            animation: none;
         }
 
         @keyframes float {
@@ -121,8 +125,8 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background: var(--primary-color);
-            color: white;
+            background: rgba(15, 23, 42, 0.88);
+            color: var(--text-color);
             border: none;
             border-radius: 50%;
             width: 50px;
@@ -141,7 +145,7 @@
 
         /* Navigation */
         .nav {
-            background: var(--bg-color);
+            background: rgba(7, 11, 20, 0.78);
             border-bottom: 1px solid var(--border-color);
             padding: 20px 0;
             position: sticky;
@@ -181,8 +185,8 @@
 
         .section {
             margin-bottom: 80px;
-            background: var(--bg-color);
-            border-radius: 15px;
+            background: var(--bg-card);
+            border-radius: 22px;
             padding: 40px;
             box-shadow: var(--shadow);
             border: 1px solid var(--border-color);
@@ -270,8 +274,8 @@
         }
 
         .skill-tag {
-            background: var(--primary-color);
-            color: white;
+            background: rgba(56, 189, 248, 0.12);
+            color: #bae6fd;
             padding: 8px 16px;
             border-radius: 20px;
             font-size: 0.9rem;
@@ -408,8 +412,8 @@
         }
 
         .project-card {
-            background: var(--bg-light);
-            border-radius: 15px;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.94), rgba(2, 6, 23, 0.82));
+            border-radius: 18px;
             overflow: hidden;
             transition: all 0.3s ease;
             border: 1px solid var(--border-color);
@@ -451,8 +455,8 @@
         }
 
         .tech-tag {
-            background: var(--primary-color);
-            color: white;
+            background: rgba(34, 197, 94, 0.12);
+            color: #bbf7d0;
             padding: 4px 8px;
             border-radius: 10px;
             font-size: 0.8rem;
@@ -477,7 +481,7 @@
 
         /* Footer */
         .footer {
-            background: var(--text-color);
+            background: #020617;
             color: white;
             text-align: center;
             padding: 40px 0;
@@ -576,11 +580,10 @@
                 <div class="profile-image">
                     <i class="fas fa-robot"></i>
                 </div>
-                <h1>AI Integration Specialist</h1>
-                <div class="title">Специалист по внедрению искусственного интеллекта</div>
+                <h1>AI Automation & Integration Specialist</h1>
+                <div class="title">Внедрение ИИ в бизнес-процессы: n8n, Make, RAG, Telegram-боты, API</div>
                 <div class="subtitle">
-                    Преподаватель ВУЗ МЧС России, переходящий в IT-сферу. 
-                    Специализируюсь на внедрении AI-решений, создании GPT-агентов и автоматизации бизнес-процессов.
+                    Проектирую и собираю AI-агентов, интеграции и low-code автоматизации для реальных задач бизнеса: склад, продажи, HR, базы знаний и Google Workspace.
                 </div>
             </div>
         </div>
@@ -592,6 +595,7 @@
             <ul class="nav-list">
                 <li class="nav-item"><a href="#about">О себе</a></li>
                 <li class="nav-item"><a href="#skills">Навыки</a></li>
+                <li class="nav-item"><a href="#solutions">Что внедряю</a></li>
                 <li class="nav-item"><a href="#experience">Опыт</a></li>
                 <li class="nav-item"><a href="#education">Образование</a></li>
                 <li class="nav-item"><a href="#projects">Проекты</a></li>
@@ -612,42 +616,47 @@
                         <i class="fas fa-phone"></i>
                         <div>
                             <strong>Телефон</strong><br>
-                            +7 (901) 685-11-37
+                            <a href="tel:+79016851137" style="color: var(--primary-color); text-decoration: none;">+7 (901) 685-11-37</a>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fab fa-telegram"></i>
                         <div>
                             <strong>Telegram</strong><br>
-                            @Firesafety76
+                            <a href="https://t.me/Firesafety76" style="color: var(--primary-color); text-decoration: none;">@Firesafety76</a>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <i class="fas fa-user"></i>
+                        <i class="fab fa-github"></i>
                         <div>
-                            <strong>Возраст</strong><br>
-                            30 лет
+                            <strong>GitHub</strong><br>
+                            <a href="https://github.com/Firesafety37" style="color: var(--primary-color); text-decoration: none;">Firesafety37</a>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-briefcase"></i>
                         <div>
-                            <strong>Семейное положение</strong><br>
-                            Женат, двое детей
+                            <strong>Целевая роль</strong><br>
+                            AI Integration / Automation Engineer
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-location-dot"></i>
+                        <div>
+                            <strong>Формат</strong><br>
+                            Проектная работа / удалённо / офис
                         </div>
                     </div>
                 </div>
                 <div style="margin-top: 30px; font-size: 1.1rem; line-height: 1.8;">
                     <p>
-                        <strong>ЦЕЛЬ:</strong> Получение позиции в IT-сфере, связанной с внедрением и разработкой решений на базе искусственного интеллекта 
-                        (AI Integration Specialist, AI Solutions Engineer, Automation Specialist).
+                        <strong>ФОКУС:</strong> внедрение AI-решений в бизнес-процессы: от анализа задачи и архитектуры workflow до интеграции с API, тестирования и документации.
                     </p>
                     <p style="margin-top: 20px;">
-                        На данный момент работаю преподавателем в ВУЗ МЧС России. Имею опыт обучения студентов современным технологиям 
-                        и готов перейти в IT-сферу для реализации проектов в области искусственного интеллекта.
+                        Собираю практические решения на n8n/Make: Telegram-боты, RAG-базы знаний, автоматизация склада, HR, продаж, документооборота и Google Workspace.
                     </p>
                     <p style="margin-top: 20px;">
-                        <strong>УВЛЕЧЕНИЯ:</strong> Хоккей, футбол, туризм, саморазвитие
+                        Предыдущий опыт преподавателя помогает быстро разбираться в предметной области, объяснять сложные решения простым языком и доводить внедрение до пользователей.
                     </p>
                 </div>
             </section>
@@ -701,6 +710,30 @@
                             <span class="skill-tag">Решение задач</span>
                             <span class="skill-tag">Стрессоустойчивость</span>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Solutions Section -->
+            <section id="solutions" class="section">
+                <h2 class="section-title">Что могу внедрить для бизнеса</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-comments"></i> AI-боты и ассистенты</h3>
+                        <p>Telegram-боты для заявок, консультаций, записи клиентов, обработки документов и передачи задач менеджерам.</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-database"></i> RAG и базы знаний</h3>
+                        <p>Поиск ответов по документам компании, регламентам, Google Drive и внутренним базам без ручного просмотра файлов.</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-diagram-project"></i> Интеграции и workflow</h3>
+                        <p>Связка n8n/Make с CRM, ERP, МойСклад, Google Workspace, PostgreSQL, REST API и webhook-событиями.</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-chart-line"></i> Контроль и аналитика</h3>
+                        <p>Автоанализ звонков, качества продаж, HR-процессов и операционных метрик с отчётами и уведомлениями.</p>
                     </div>
                 </div>
             </section>
@@ -810,8 +843,7 @@
                 <h2 class="section-title">Проекты</h2>
                 <div style="margin-bottom: 40px; font-size: 1.1rem; line-height: 1.8;">
                     <p>
-                        В процессе обучения и саморазвития в области AI создаю практические проекты и решения 
-                        с использованием современных технологий искусственного интеллекта.
+                        Ниже — практические workflow и интеграции с понятной бизнес-задачей, стеком и измеримым результатом. Каждый проект можно открыть на GitHub и импортировать в n8n/Make.
                     </p>
                 </div>
 
@@ -833,7 +865,7 @@
                                 <span class="tech-tag">Telegram</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/Firesafety37/tarasvoron.github.io" class="project-link" title="GitHub">
+                                <a href="https://github.com/Firesafety37/Firesafety37.github.io/blob/main/workflows/n8n/telegram-moysklad-cv.json" class="project-link" title="GitHub">
                                     <i class="fab fa-github"></i>
                                 </a>
                             </div>
@@ -845,7 +877,7 @@
                             <h3 class="project-title">🧠 RAG AI Agent с автообновлением</h3>
                             <p class="project-description">
                                 AI-агент с базой знаний компании. Документы из Google Drive → Embeddings → Vector DB.
-                                Автоматическое обновление при добавлении файлов.
+                                Снижает нагрузку на поддержку, HR и руководителей: сотрудники получают ответы по регламентам без ручного поиска.
                             </p>
                         </div>
                         <div class="project-footer">
@@ -857,7 +889,7 @@
                                 <span class="tech-tag">Google Drive</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/Firesafety37/tarasvoron.github.io" class="project-link" title="GitHub">
+                                <a href="https://github.com/Firesafety37/Firesafety37.github.io/blob/main/workflows/n8n/rag-ai-agent.json" class="project-link" title="GitHub">
                                     <i class="fab fa-github"></i>
                                 </a>
                             </div>
@@ -868,8 +900,8 @@
                         <div class="project-header">
                             <h3 class="project-title">✈️ AI Travel Consultant</h3>
                             <p class="project-description">
-                                Telegram-бот для турагентства: подбор направлений, память диалога (PostgreSQL),
-                                персонализированные рекомендации.
+                                Telegram-бот для турагентства: подбор направлений, память диалога PostgreSQL,
+                                персональные рекомендации и квалификация входящих обращений.
                             </p>
                         </div>
                         <div class="project-footer">
@@ -881,7 +913,7 @@
                                 <span class="tech-tag">AI Agent</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/Firesafety37/tarasvoron.github.io" class="project-link" title="GitHub">
+                                <a href="https://github.com/Firesafety37/Firesafety37.github.io/blob/main/workflows/n8n/tg-ai-travel-consultant.json" class="project-link" title="GitHub">
                                     <i class="fab fa-github"></i>
                                 </a>
                             </div>
@@ -892,8 +924,8 @@
                         <div class="project-header">
                             <h3 class="project-title">📞 SWOT-анализ телефонных звонков</h3>
                             <p class="project-description">
-                                Автоматический анализ качества общения менеджеров. Аудио → транскрибация → LLM-анализ → SWOT-отчёт.
-                                Триггер: новый файл в Google Drive.
+                                Автоматический контроль качества продаж. Аудио → транскрибация → LLM-анализ → SWOT-отчёт,
+                                рекомендации менеджеру и фиксация результата в таблице.
                             </p>
                         </div>
                         <div class="project-footer">
@@ -904,7 +936,7 @@
                                 <span class="tech-tag">Google Drive</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/Firesafety37/tarasvoron.github.io" class="project-link" title="GitHub">
+                                <a href="https://github.com/Firesafety37/Firesafety37.github.io/blob/main/workflows/make/swot-call-analysis.json" class="project-link" title="GitHub">
                                     <i class="fab fa-github"></i>
                                 </a>
                             </div>
@@ -916,7 +948,7 @@
                             <h3 class="project-title">👨‍💼 AI Sales Manager (self-hosted LLM)</h3>
                             <p class="project-description">
                                 Локальный AI-ассистент отдела продаж на llama.cpp. Классификация запросов,
-                                хранение клиентских данных, обработка заявок.
+                                хранение клиентских данных и обработка заявок без передачи данных во внешние LLM.
                             </p>
                         </div>
                         <div class="project-footer">
@@ -928,7 +960,7 @@
                                 <span class="tech-tag">DB</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/Firesafety37/tarasvoron.github.io" class="project-link" title="GitHub">
+                                <a href="https://github.com/Firesafety37/Firesafety37.github.io/blob/main/workflows/n8n/ai-sales-manager.json" class="project-link" title="GitHub">
                                     <i class="fab fa-github"></i>
                                 </a>
                             </div>
@@ -939,8 +971,8 @@
                         <div class="project-header">
                             <h3 class="project-title">✍️ AI Генерация описаний товаров</h3>
                             <p class="project-description">
-                                Telegram-бот для автоматической генерации маркетинговых описаний.
-                                Валидация, множественные варианты, итеративная доработка.
+                                Telegram-бот для контент-менеджмента: генерация маркетинговых описаний,
+                                валидация входных данных, несколько вариантов и итеративная доработка карточек товара.
                             </p>
                         </div>
                         <div class="project-footer">
@@ -951,7 +983,7 @@
                                 <span class="tech-tag">Content Gen</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/Firesafety37/tarasvoron.github.io" class="project-link" title="GitHub">
+                                <a href="https://github.com/Firesafety37/Firesafety37.github.io/blob/main/workflows/n8n/ai-product-descriptions.json" class="project-link" title="GitHub">
                                     <i class="fab fa-github"></i>
                                 </a>
                             </div>
@@ -1055,7 +1087,7 @@
 
         // Initialize theme from localStorage
         document.addEventListener('DOMContentLoaded', function() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
+            const savedTheme = localStorage.getItem('theme') || 'dark';
             document.body.setAttribute('data-theme', savedTheme);
             
             const themeToggle = document.querySelector('.theme-toggle i');
@@ -1081,7 +1113,7 @@
             window.addEventListener('scroll', function() {
                 const nav = document.querySelector('.nav');
                 if (window.scrollY > 100) {
-                    nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                    nav.style.background = 'rgba(7, 11, 20, 0.92)';
                     nav.style.backdropFilter = 'blur(10px)';
                 } else {
                     nav.style.background = 'var(--bg-color)';

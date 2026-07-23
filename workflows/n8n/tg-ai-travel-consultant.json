@@ -14,15 +14,7 @@
         0,
         0
       ],
-      "id": "8d26fb43-7071-4cab-8d81-3398544aa69d",
-      "name": "Telegram Trigger",
-      "webhookId": "17cd0b61-e21b-4ba4-9496-40d36f0b6ce5",
-      "credentials": {
-        "telegramApi": {
-          "id": "i7Byuw7PAyqTW97N",
-          "name": "Telegram account"
-        }
-      }
+      "name": "Telegram Trigger"
     },
     {
       "parameters": {
@@ -38,7 +30,6 @@
         624,
         0
       ],
-      "id": "e96a73e8-0114-46e2-9382-e3db7e722412",
       "name": "AI Agent"
     },
     {
@@ -52,14 +43,7 @@
         496,
         208
       ],
-      "id": "f49a78bf-0f13-47aa-a940-2a21866f9c3b",
-      "name": "OpenRouter Chat Model",
-      "credentials": {
-        "openRouterApi": {
-          "id": "HJl8d8B8fAufsC6G",
-          "name": "OpenRouter account"
-        }
-      }
+      "name": "OpenRouter Chat Model"
     },
     {
       "parameters": {
@@ -72,14 +56,7 @@
         640,
         208
       ],
-      "id": "be565d4a-115e-471a-9525-c6a43878b6b9",
-      "name": "Postgres Chat Memory",
-      "credentials": {
-        "postgres": {
-          "id": "b93kE51BNa5ZbY29",
-          "name": "Postgres account"
-        }
-      }
+      "name": "Postgres Chat Memory"
     },
     {
       "parameters": {
@@ -95,15 +72,7 @@
         1184,
         0
       ],
-      "id": "470a8b37-fe00-4528-a329-e9ed4240d927",
-      "name": "Send a text message",
-      "webhookId": "5ffa1be5-3136-4c23-8a02-9f998826497b",
-      "credentials": {
-        "telegramApi": {
-          "id": "i7Byuw7PAyqTW97N",
-          "name": "Telegram account"
-        }
-      }
+      "name": "Send a text message"
     },
     {
       "parameters": {
@@ -118,15 +87,7 @@
         208,
         0
       ],
-      "id": "4271a719-9e99-49fa-ad63-64469fbc0410",
-      "name": "Send an animated file",
-      "webhookId": "7b38cbed-fe1a-46ba-b5ab-30475c7e9ff6",
-      "credentials": {
-        "telegramApi": {
-          "id": "i7Byuw7PAyqTW97N",
-          "name": "Telegram account"
-        }
-      }
+      "name": "Send an animated file"
     },
     {
       "parameters": {
@@ -140,18 +101,9 @@
         976,
         0
       ],
-      "id": "d1859f2f-9691-4c88-9b71-33a19feb6d9e",
-      "name": "Delete a chat message",
-      "webhookId": "ba2b3f9c-a0ea-4a06-a1c7-cea0d5bee121",
-      "credentials": {
-        "telegramApi": {
-          "id": "i7Byuw7PAyqTW97N",
-          "name": "Telegram account"
-        }
-      }
+      "name": "Delete a chat message"
     }
   ],
-  "pinData": {},
   "connections": {
     "Telegram Trigger": {
       "main": [
@@ -220,15 +172,5 @@
       ]
     }
   },
-  "active": true,
-  "settings": {
-    "executionOrder": "v1"
-  },
-  "versionId": "545d717e-16f4-4dc4-83ed-92fcc8e57723",
-  "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "f83df510c3912c6e8ac1a139a72a41bcfa524155a9d4d6993851eb9d4087b49c"
-  },
-  "id": "zq1xx8yEVstQLd2C",
-  "tags": []
+  "settings": {}
 }

@@ -3,7 +3,7 @@
   "nodes": [
     {
       "parameters": {
-        "url": "=https://api.telegram.org/bot8359508985:AAEyGYes8O5SE2_i3uIl6JwEASj1mcgE_6w/getFile?file_id={{$json.body.message.photo[$json.body.message.photo.length - 1].file_id}}",
+        "url": "=https://api.telegram.org/bot{{$env.TELEGRAM_BOT_TOKEN}}/getFile?file_id={{$json.body.message.photo[$json.body.message.photo.length - 1].file_id}}",
         "options": {
           "response": {
             "response": {
@@ -18,12 +18,11 @@
         -1136,
         768
       ],
-      "id": "bf6113b8-bdc6-42a7-9e67-8a8f89327620",
       "name": "HTTP Request1"
     },
     {
       "parameters": {
-        "url": "=https://api.telegram.org/file/bot8359508985:AAEyGYes8O5SE2_i3uIl6JwEASj1mcgE_6w/{{$json.result.file_path}}",
+        "url": "=https://api.telegram.org/file/bot{{$env.TELEGRAM_BOT_TOKEN}}/{{$json.result.file_path}}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -51,7 +50,6 @@
         -912,
         768
       ],
-      "id": "3e890e7c-ce14-47d4-a7d5-13dab7e61a7e",
       "name": "HTTP Request5"
     },
     {
@@ -64,7 +62,6 @@
         -624,
         768
       ],
-      "id": "568c1f6c-cd07-4065-90af-8513ec6629dc",
       "name": "Code"
     },
     {
@@ -77,9 +74,7 @@
         32,
         624
       ],
-      "id": "2b8f8428-8fcf-419c-af33-e42f667efdb9",
-      "name": "Парсинг ответа OpenAI1",
-      "alwaysOutputData": true
+      "name": "Парсинг ответа OpenAI1"
     },
     {
       "parameters": {
@@ -92,7 +87,6 @@
         368,
         960
       ],
-      "id": "b07c84a8-5e76-4a36-b24b-69177340fdb5",
       "name": "Simple Memory"
     },
     {
@@ -111,14 +105,7 @@
         240,
         960
       ],
-      "id": "1458feb1-1bf4-4536-987e-0119045a46ae",
-      "name": "OpenAI_Chat_Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "Ske4KTQ9oCHRiMto",
-          "name": "OpenAi account"
-        }
-      }
+      "name": "OpenAI_Chat_Model"
     },
     {
       "parameters": {
@@ -143,14 +130,7 @@
         704,
         944
       ],
-      "id": "25a55874-4784-4a2e-93e9-f5dcc2c17647",
-      "name": "find_store",
-      "credentials": {
-        "httpBearerAuth": {
-          "id": "Yp05pkimkq9ytBHo",
-          "name": "Bearer Auth account"
-        }
-      }
+      "name": "find_store"
     },
     {
       "parameters": {
@@ -175,14 +155,7 @@
         544,
         944
       ],
-      "id": "faee0799-d8cc-42c8-81d0-d0e348c7410d",
-      "name": "find_organization",
-      "credentials": {
-        "httpBearerAuth": {
-          "id": "Yp05pkimkq9ytBHo",
-          "name": "Bearer Auth account"
-        }
-      }
+      "name": "find_organization"
     },
     {
       "parameters": {
@@ -214,14 +187,7 @@
         992,
         608
       ],
-      "id": "21570064-160a-4ee0-a2df-cd8da2f31e0a",
       "name": "create_enter",
-      "credentials": {
-        "httpBearerAuth": {
-          "id": "Yp05pkimkq9ytBHo",
-          "name": "Bearer Auth account"
-        }
-      },
       "onError": "continueErrorOutput"
     },
     {
@@ -234,9 +200,7 @@
         208,
         128
       ],
-      "id": "10299413-81cb-47c7-91e5-a21536b00aef",
       "name": "Loop Over Items",
-      "alwaysOutputData": true,
       "onError": "continueErrorOutput"
     },
     {
@@ -248,8 +212,6 @@
         1104,
         96
       ],
-      "id": "f7286a75-f410-4108-9942-ae1de8be7b93",
-      "alwaysOutputData": true,
       "onError": "continueErrorOutput"
     },
     {
@@ -287,14 +249,7 @@
         496,
         144
       ],
-      "id": "9f9c2f9b-7e1f-42fe-9048-b5e83f7e0a36",
-      "name": "search_products",
-      "credentials": {
-        "httpBearerAuth": {
-          "id": "Yp05pkimkq9ytBHo",
-          "name": "Bearer Auth account"
-        }
-      }
+      "name": "search_products"
     },
     {
       "parameters": {
@@ -358,7 +313,6 @@
         688,
         144
       ],
-      "id": "7d5e0b77-8453-41bf-8f58-6045d480bc25",
       "name": "Switch"
     },
     {
@@ -391,14 +345,7 @@
         896,
         272
       ],
-      "id": "4afa93cc-fd0a-4e54-a6cc-402d453e53a4",
-      "name": "create_products_bulk1",
-      "credentials": {
-        "httpBearerAuth": {
-          "id": "Yp05pkimkq9ytBHo",
-          "name": "Bearer Auth account"
-        }
-      }
+      "name": "create_products_bulk1"
     },
     {
       "parameters": {
@@ -414,15 +361,7 @@
         1120,
         272
       ],
-      "id": "d0794eab-7bb6-4392-bec3-d142a67345fc",
-      "name": "Send a text message2",
-      "webhookId": "037547d1-245a-43b3-b292-c453d8f6202e",
-      "credentials": {
-        "telegramApi": {
-          "id": "iJNIGdTYk2ZnIihg",
-          "name": "Telegram account 3"
-        }
-      }
+      "name": "Send a text message2"
     },
     {
       "parameters": {
@@ -437,7 +376,6 @@
         48
       ],
       "typeVersion": 1,
-      "id": "ad60d66b-3b2c-41c1-ad0b-2fb0ffe53c9c",
       "name": "Sticky Note"
     },
     {
@@ -452,7 +390,6 @@
         640
       ],
       "typeVersion": 1,
-      "id": "9a4ceef0-5b98-4007-bafb-ec4f179b8204",
       "name": "Sticky Note1"
     },
     {
@@ -468,7 +405,6 @@
         640
       ],
       "typeVersion": 1,
-      "id": "3d409c49-4c01-4c84-9f98-c9ffe8fc1171",
       "name": "Sticky Note2"
     },
     {
@@ -481,9 +417,7 @@
         912,
         112
       ],
-      "id": "e32b2eb1-2bad-4f48-b022-8c807b4c5720",
-      "name": "Wait",
-      "webhookId": "bb99e091-ff80-4d9d-932f-6162e1995bf8"
+      "name": "Wait"
     },
     {
       "parameters": {
@@ -505,14 +439,7 @@
         -432,
         768
       ],
-      "id": "f254d6a1-773a-4a38-802f-e498f636e9e6",
-      "name": "Считывание текста с фото",
-      "credentials": {
-        "openAiApi": {
-          "id": "Ske4KTQ9oCHRiMto",
-          "name": "OpenAi account"
-        }
-      }
+      "name": "Считывание текста с фото"
     },
     {
       "parameters": {
@@ -544,7 +471,6 @@
         -176,
         672
       ],
-      "id": "07816605-d8d1-4b3a-a63d-64018cbf7337",
       "name": "Удалось считать?"
     },
     {
@@ -578,7 +504,6 @@
         -1824,
         816
       ],
-      "id": "1c495c47-496b-41a3-8286-02ccf0392c72",
       "name": "Фото или нет"
     },
     {
@@ -589,9 +514,7 @@
         256,
         624
       ],
-      "id": "061bd052-8655-497a-89e5-05f8cb9a0279",
       "name": "Ждем создание товаров",
-      "alwaysOutputData": true,
       "onError": "continueErrorOutput"
     },
     {
@@ -617,14 +540,7 @@
         848,
         944
       ],
-      "id": "1b7b9b07-139f-4512-b2a4-e10d2db6f7b9",
-      "name": "Product_list",
-      "credentials": {
-        "httpBearerAuth": {
-          "id": "Yp05pkimkq9ytBHo",
-          "name": "Bearer Auth account"
-        }
-      }
+      "name": "Product_list"
     },
     {
       "parameters": {
@@ -657,7 +573,6 @@
         432,
         320
       ],
-      "id": "f4338b2a-2847-460f-9d7c-1f7eb99fbc0f",
       "name": "Фильтр от пустых массивов (items)"
     },
     {
@@ -674,15 +589,7 @@
         1200,
         624
       ],
-      "id": "afadf8ae-ae3c-4ee6-ad49-0943d38b0539",
-      "name": "Количество товаров занесенных оприходованием",
-      "webhookId": "245f1ae9-13f9-4c75-ab1b-86aa0afae184",
-      "credentials": {
-        "telegramApi": {
-          "id": "iJNIGdTYk2ZnIihg",
-          "name": "Telegram account 3"
-        }
-      }
+      "name": "Количество товаров занесенных оприходованием"
     },
     {
       "parameters": {
@@ -696,15 +603,7 @@
         1200,
         800
       ],
-      "id": "4b1c5d5b-4830-470f-a558-8d8dfe733cf7",
-      "name": "Ошибка оприходования",
-      "webhookId": "b56500f1-ab70-4797-ac50-928fcfce5684",
-      "credentials": {
-        "telegramApi": {
-          "id": "iJNIGdTYk2ZnIihg",
-          "name": "Telegram account 3"
-        }
-      }
+      "name": "Ошибка оприходования"
     },
     {
       "parameters": {
@@ -716,7 +615,6 @@
         816,
         608
       ],
-      "id": "60a78426-b1a7-40b3-8458-0cc642a6aa13",
       "name": "Формирование тела запроса"
     },
     {
@@ -734,9 +632,7 @@
         512,
         608
       ],
-      "id": "2bc2656f-ae09-4f3a-ac9f-d2ab99ff4fd7",
-      "name": "Сбор данных для оприходования",
-      "executeOnce": true
+      "name": "Сбор данных для оприходования"
     },
     {
       "parameters": {
@@ -750,15 +646,7 @@
         32,
         784
       ],
-      "id": "84d3501f-3f28-487d-b261-2bc207e04c52",
-      "name": "Ошибка распознавания текста на картинке",
-      "webhookId": "3e1fa241-9e56-452e-9ac0-4d1ba63e8eee",
-      "credentials": {
-        "telegramApi": {
-          "id": "iJNIGdTYk2ZnIihg",
-          "name": "Telegram account 3"
-        }
-      }
+      "name": "Ошибка распознавания текста на картинке"
     },
     {
       "parameters": {
@@ -772,7 +660,6 @@
         544
       ],
       "typeVersion": 1,
-      "id": "6a1df58a-e1c9-4027-93df-f4d38c1bb1e1",
       "name": "Sticky Note3"
     },
     {
@@ -787,9 +674,7 @@
         -2048,
         816
       ],
-      "id": "102750b7-2eb9-4044-a8fe-bd2776eea0d3",
-      "name": "Webhook телеграмм",
-      "webhookId": "e8e51c6b-b2e8-4eda-8945-f8edac390f02"
+      "name": "Webhook телеграмм"
     },
     {
       "parameters": {
@@ -840,15 +725,7 @@
         -1152,
         1184
       ],
-      "id": "d52c47b5-6465-4c40-a6ac-d52d0fa768b7",
-      "name": "Кнопки в телеге",
-      "webhookId": "b5730279-3ccc-4bf3-9f2d-27b11502dbd7",
-      "credentials": {
-        "telegramApi": {
-          "id": "iJNIGdTYk2ZnIihg",
-          "name": "Telegram account 3"
-        }
-      }
+      "name": "Кнопки в телеге"
     },
     {
       "parameters": {
@@ -963,7 +840,6 @@
         -1152,
         1440
       ],
-      "id": "d65d0888-dca6-45d6-a178-0bdb24b6487c",
       "name": "Switch1"
     },
     {
@@ -997,7 +873,6 @@
         -1392,
         1472
       ],
-      "id": "73a37280-d5d7-41e8-9282-0881d1342a85",
       "name": "Использование кнопок"
     },
     {
@@ -1014,15 +889,7 @@
         -624,
         1200
       ],
-      "id": "343fc111-c29e-40fb-94b4-0b0b22008fff",
-      "name": "инструкции по фото",
-      "webhookId": "b3482d5c-9c45-4f49-a3b3-b99e6b687e19",
-      "credentials": {
-        "telegramApi": {
-          "id": "iJNIGdTYk2ZnIihg",
-          "name": "Telegram account 3"
-        }
-      }
+      "name": "инструкции по фото"
     },
     {
       "parameters": {
@@ -1046,14 +913,7 @@
         -624,
         1344
       ],
-      "id": "09c243e8-c692-46dd-8bc3-b3aff44b79e3",
-      "name": "Получение списка товаров",
-      "credentials": {
-        "httpBearerAuth": {
-          "id": "Yp05pkimkq9ytBHo",
-          "name": "Bearer Auth account"
-        }
-      }
+      "name": "Получение списка товаров"
     },
     {
       "parameters": {
@@ -1077,14 +937,7 @@
         -624,
         1536
       ],
-      "id": "143676ed-5b3b-47a0-82e7-3913248e4ffa",
-      "name": "Получение остатков",
-      "credentials": {
-        "httpBearerAuth": {
-          "id": "Yp05pkimkq9ytBHo",
-          "name": "Bearer Auth account"
-        }
-      }
+      "name": "Получение остатков"
     },
     {
       "parameters": {
@@ -1117,7 +970,6 @@
         -1392,
         1184
       ],
-      "id": "d3ff8375-be4c-4742-8329-9d6a18575617",
       "name": "В письме пользователя нет клавиатуры"
     },
     {
@@ -1146,7 +998,6 @@
         -416,
         1344
       ],
-      "id": "9200a458-836b-4442-a2dd-f3d0d969cec9",
       "name": "Edit Fields"
     },
     {
@@ -1159,7 +1010,6 @@
         -208,
         1344
       ],
-      "id": "ef7cb2bb-8e86-4696-b504-6cc8d55878a9",
       "name": "Code in JavaScript"
     },
     {
@@ -1176,15 +1026,7 @@
         0,
         1344
       ],
-      "id": "9c9c4442-ba08-4818-a300-88ac15a11592",
-      "name": "Ответ со списком товаров",
-      "webhookId": "b5730279-3ccc-4bf3-9f2d-27b11502dbd7",
-      "credentials": {
-        "telegramApi": {
-          "id": "iJNIGdTYk2ZnIihg",
-          "name": "Telegram account 3"
-        }
-      }
+      "name": "Ответ со списком товаров"
     },
     {
       "parameters": {
@@ -1212,7 +1054,6 @@
         -416,
         1536
       ],
-      "id": "454ad33c-44db-4b3a-aa33-07d2475bd5b4",
       "name": "Edit Fields1"
     },
     {
@@ -1225,7 +1066,6 @@
         -208,
         1536
       ],
-      "id": "9e09dd54-9a29-4d8f-9e1f-e8a66149a64a",
       "name": "Code in JavaScript1"
     },
     {
@@ -1242,15 +1082,7 @@
         0,
         1536
       ],
-      "id": "1e762b47-6ded-4f81-954f-70ddcf026770",
-      "name": "Ответ со списком товаров1",
-      "webhookId": "b5730279-3ccc-4bf3-9f2d-27b11502dbd7",
-      "credentials": {
-        "telegramApi": {
-          "id": "iJNIGdTYk2ZnIihg",
-          "name": "Telegram account 3"
-        }
-      }
+      "name": "Ответ со списком товаров1"
     },
     {
       "parameters": {
@@ -1307,9 +1139,7 @@
         -400,
         1744
       ],
-      "id": "05b4b7e9-8e24-463d-94e0-0b95f9a0c844",
-      "name": "Заполнение данных для создания товара",
-      "webhookId": "caf99c08-865a-4a6b-b785-d5e5fd102c7a"
+      "name": "Заполнение данных для создания товара"
     },
     {
       "parameters": {
@@ -1325,15 +1155,7 @@
         -624,
         1744
       ],
-      "id": "d27c5b7c-4c35-43a3-87c1-f9091a14d907",
-      "name": "Отправка ссылки на форму",
-      "webhookId": "2370db95-af0c-4c2f-987a-20c6d58f7afa",
-      "credentials": {
-        "telegramApi": {
-          "id": "iJNIGdTYk2ZnIihg",
-          "name": "Telegram account 3"
-        }
-      }
+      "name": "Отправка ссылки на форму"
     },
     {
       "parameters": {
@@ -1365,14 +1187,7 @@
         176,
         1760
       ],
-      "id": "c36bd3a3-a1a6-495b-93a2-163d32b2112e",
-      "name": "create_products_bulk",
-      "credentials": {
-        "httpBearerAuth": {
-          "id": "Yp05pkimkq9ytBHo",
-          "name": "Bearer Auth account"
-        }
-      }
+      "name": "create_products_bulk"
     },
     {
       "parameters": {
@@ -1384,7 +1199,6 @@
         -192,
         1888
       ],
-      "id": "5841202c-4df4-4c16-a321-bfe19815de1a",
       "name": "Code in JavaScript2"
     },
     {
@@ -1399,9 +1213,7 @@
         -32,
         1760
       ],
-      "id": "3e6f8c66-e5fd-4477-83e0-da9cfbf4ca40",
-      "name": "Объединение данных",
-      "alwaysOutputData": false
+      "name": "Объединение данных"
     },
     {
       "parameters": {
@@ -1416,7 +1228,6 @@
         1136
       ],
       "typeVersion": 1,
-      "id": "5461b55c-c636-4006-9f6a-d7bc9f811074",
       "name": "Sticky Note4"
     },
     {
@@ -1433,15 +1244,7 @@
         544,
         1744
       ],
-      "id": "9d8aac82-46ad-4616-ac30-e9ddb72441a1",
-      "name": "Отчет о созданном товаре",
-      "webhookId": "b56500f1-ab70-4797-ac50-928fcfce5684",
-      "credentials": {
-        "telegramApi": {
-          "id": "iJNIGdTYk2ZnIihg",
-          "name": "Telegram account 3"
-        }
-      }
+      "name": "Отчет о созданном товаре"
     },
     {
       "parameters": {
@@ -1455,7 +1258,6 @@
         352,
         1744
       ],
-      "id": "969b519b-5b7a-4050-b8e4-6ad9f5cb6d14",
       "name": "Merge"
     },
     {
@@ -1471,7 +1273,6 @@
         1120
       ],
       "typeVersion": 1,
-      "id": "2e67c86f-24f4-4dab-a843-836d844e9c7e",
       "name": "Sticky Note5"
     },
     {
@@ -1548,14 +1349,7 @@
         -624,
         1984
       ],
-      "id": "137211e2-7e47-4313-9881-2b5ee5640cd8",
-      "name": "Insert rows in a table",
-      "credentials": {
-        "postgres": {
-          "id": "hUNJxcedLpPOQDvR",
-          "name": "Postgres account"
-        }
-      }
+      "name": "Insert rows in a table"
     },
     {
       "parameters": {
@@ -1588,17 +1382,9 @@
         176,
         1968
       ],
-      "id": "d3d66c92-2573-4507-9221-7eee9a86504b",
-      "name": "Select rows from a table",
-      "credentials": {
-        "postgres": {
-          "id": "hUNJxcedLpPOQDvR",
-          "name": "Postgres account"
-        }
-      }
+      "name": "Select rows from a table"
     }
   ],
-  "pinData": {},
   "connections": {
     "HTTP Request1": {
       "main": [
@@ -2122,15 +1908,5 @@
       ]
     }
   },
-  "active": true,
-  "settings": {
-    "executionOrder": "v1"
-  },
-  "versionId": "8264b431-9cbb-4e0a-8809-bd881fe623da",
-  "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "6e6f0f5afec22a6d1e61c35af2396991937ebe8d502519545a07db63b494fb92"
-  },
-  "id": "sErahwIYbi3gxUpX",
-  "tags": []
+  "settings": {}
 }

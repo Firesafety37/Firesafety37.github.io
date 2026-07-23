@@ -16,7 +16,6 @@
         220,
         0
       ],
-      "id": "2ce18dd4-628e-42fb-a382-42872d44ba06",
       "name": "HTTP Request"
     },
     {
@@ -32,15 +31,7 @@
         0,
         0
       ],
-      "id": "16d4c4dd-2cf6-4e44-8c92-79e1fe23bca6",
-      "name": "Telegram Trigger",
-      "webhookId": "1b1197cb-3223-453c-9cef-a2f967a9609f",
-      "credentials": {
-        "telegramApi": {
-          "id": "KsSxA3iutZ0JYgxA",
-          "name": "Telegram account"
-        }
-      }
+      "name": "Telegram Trigger"
     },
     {
       "parameters": {
@@ -124,7 +115,6 @@
         440,
         0
       ],
-      "id": "b29582f4-7cf5-4efe-a8b6-f1dce426c703",
       "name": "Switch"
     },
     {
@@ -148,7 +138,6 @@
         -260,
         -300
       ],
-      "id": "309cafd7-a4df-4e94-8db6-18ff15f434c1",
       "name": "DB+"
     },
     {
@@ -166,7 +155,6 @@
         660,
         -320
       ],
-      "id": "47f24aad-a3c0-490c-851f-ddc0c51ed1a6",
       "name": "ГОРОД1"
     },
     {
@@ -194,7 +182,6 @@
         880,
         -320
       ],
-      "id": "1956aea3-1143-453b-bed8-47751df803d2",
       "name": "DB Search"
     },
     {
@@ -217,7 +204,6 @@
         1100,
         -320
       ],
-      "id": "ebdffa9b-f8e0-4e03-a684-807e9861a1a8",
       "name": "Edit Fields"
     },
     {
@@ -240,7 +226,6 @@
         1320,
         -320
       ],
-      "id": "949bdbbf-ffc5-4a1d-a0a7-aab67da06bfd",
       "name": "Edit Fields1"
     },
     {
@@ -258,7 +243,6 @@
         1540,
         -320
       ],
-      "id": "f84ee721-8f99-4219-99c3-0a6e2e77febe",
       "name": "LM studio final"
     },
     {
@@ -273,15 +257,7 @@
         1760,
         -320
       ],
-      "id": "6925720a-d8db-47e4-990e-f5e08017cd4d",
-      "name": "Telegram",
-      "webhookId": "8f6d5786-25fd-4438-920c-b7798812a495",
-      "credentials": {
-        "telegramApi": {
-          "id": "KsSxA3iutZ0JYgxA",
-          "name": "Telegram account"
-        }
-      }
+      "name": "Telegram"
     },
     {
       "parameters": {
@@ -298,7 +274,6 @@
         720,
         -20
       ],
-      "id": "7a0f3aa4-7e14-48ce-be8d-a9cdfe9b3d85",
       "name": "LM2"
     },
     {
@@ -332,7 +307,6 @@
         940,
         -20
       ],
-      "id": "d18f80c2-2e49-4b00-8f4e-66532b2427f1",
       "name": "If"
     },
     {
@@ -347,15 +321,7 @@
         1200,
         300
       ],
-      "id": "65e60fed-d088-46be-88b6-653d20c7e98a",
-      "name": "Telegram1",
-      "webhookId": "9a353213-99bb-4a01-8148-987f3157514e",
-      "credentials": {
-        "telegramApi": {
-          "id": "KsSxA3iutZ0JYgxA",
-          "name": "Telegram account"
-        }
-      }
+      "name": "Telegram1"
     },
     {
       "parameters": {
@@ -372,7 +338,6 @@
         1200,
         100
       ],
-      "id": "e37dee28-34ec-454d-b355-7efb276ee93a",
       "name": "LM"
     },
     {
@@ -401,7 +366,6 @@
         1420,
         100
       ],
-      "id": "0cd13c42-3474-4f78-826d-71c0948cc554",
       "name": "Edit Fields2"
     },
     {
@@ -419,7 +383,6 @@
         1640,
         100
       ],
-      "id": "db38d1de-fb7e-4002-a42f-3c7edf77dbb3",
       "name": "HTTP Request1"
     },
     {
@@ -434,15 +397,7 @@
         1200,
         -100
       ],
-      "id": "933f24c5-52c7-4abe-9efa-1579abea092f",
-      "name": "Telegram2",
-      "webhookId": "f4adaf26-1af2-4d5b-877c-89df545de0ae",
-      "credentials": {
-        "telegramApi": {
-          "id": "KsSxA3iutZ0JYgxA",
-          "name": "Telegram account"
-        }
-      }
+      "name": "Telegram2"
     },
     {
       "parameters": {
@@ -459,7 +414,6 @@
         700,
         520
       ],
-      "id": "a6f898d3-178c-452b-bf0d-71c46534da9c",
       "name": "LM3"
     },
     {
@@ -474,18 +428,9 @@
         920,
         520
       ],
-      "id": "73642e26-6494-417c-8928-d0ff2dd4e683",
-      "name": "Telegram3",
-      "webhookId": "322e6e7d-8175-4867-8177-5149f81106f6",
-      "credentials": {
-        "telegramApi": {
-          "id": "KsSxA3iutZ0JYgxA",
-          "name": "Telegram account"
-        }
-      }
+      "name": "Telegram3"
     }
   ],
-  "pinData": {},
   "connections": {
     "Telegram Trigger": {
       "main": [
@@ -657,15 +602,5 @@
       ]
     }
   },
-  "active": false,
-  "settings": {
-    "executionOrder": "v1"
-  },
-  "versionId": "7dce812f-34c4-4265-850b-271ffa090695",
-  "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "b390159bf44470b98c5f5ac38fbc4b06c898b516f67aa227af32baf9789f5bb4"
-  },
-  "id": "HqkOqtvx0X72DU1t",
-  "tags": []
+  "settings": {}
 }

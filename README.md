@@ -18,6 +18,16 @@
 
 ---
 
+## 💼 What I implement for business
+
+- AI-боты для обработки заявок, консультаций и внутренних сервисов
+- RAG-базы знаний по документам компании и регламентам
+- Автоматизация склада, HR, продаж и документооборота
+- Интеграции n8n/Make с CRM, ERP, МойСклад, Google Workspace, PostgreSQL и REST API
+- Анализ звонков, качества коммуникаций и операционных процессов
+
+---
+
 ## 🚀 Projects
 
 ### 1. 📦 Telegram + МойСклад: Computer Vision оприходование
@@ -34,7 +44,7 @@ flowchart LR
 
 **Бизнес-результат:** ручной ввод сокращён с ~40 мин до 2 мин, исключены ошибки ручного ввода.
 
-[📄 workflow.json](workflows/n8n/telegram-moysklad-cv.json)
+[📄 workflow.json](workflows/n8n/telegram-moysklad-cv.json) · [📌 case study](case-studies/telegram-moysklad-cv.md)
 
 ---
 
@@ -53,7 +63,7 @@ flowchart LR
 
 **Ключевое:** база знаний обновляется автоматически при добавлении документов в Google Drive.
 
-[📄 workflow.json](workflows/n8n/rag-ai-agent.json)
+[📄 workflow.json](workflows/n8n/rag-ai-agent.json) · [📌 case study](case-studies/rag-knowledge-base.md)
 
 ---
 
@@ -77,7 +87,7 @@ AI-консультант для турагентства с памятью ди
 - SWOT-отчёт + рекомендации
 - Триггер: новый файл в Google Drive
 
-[📄 blueprint.json](workflows/make/swot-call-analysis.json)
+[📄 blueprint.json](workflows/make/swot-call-analysis.json) · [📌 case study](case-studies/swot-call-analysis.md)
 
 ---
 
@@ -132,6 +142,14 @@ Telegram-бот для управления расписанием через Go
 
 ---
 
+## 📂 Case studies
+
+- [Telegram + МойСклад: CV-оприходование](case-studies/telegram-moysklad-cv.md)
+- [RAG Knowledge Base Agent](case-studies/rag-knowledge-base.md)
+- [SWOT-анализ телефонных звонков](case-studies/swot-call-analysis.md)
+
+---
+
 ## 📂 Repository Structure
 
 ```
@@ -139,6 +157,7 @@ Telegram-бот для управления расписанием через Go
 ├── README.md
 ├── SETUP.md                  ← Инструкции по запуску
 ├── index.html                ← Лендинг-портфолио
+├── case-studies/              ← Описание бизнес-задачи, архитектуры и результата
 ├── workflows/
 │   ├── n8n/
 │   │   ├── telegram-moysklad-cv.json
